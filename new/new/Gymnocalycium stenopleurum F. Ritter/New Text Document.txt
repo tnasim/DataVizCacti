@@ -1,0 +1,15 @@
+Catalog #: UTC00280500
+Occurrence ID (GUID): 7ed919f8-d1b4-45fd-9efa-97b6cacf040e
+Taxon: Gymnocalycium stenopleurum F. Ritter	
+Family: Cactaceae
+Determiner: Michael B. Piep	(12 July 2018)
+Taxon Remarks: Nursery tagged as Gymnocalycium mihanovichii var. friedrichii
+ID Remarks: Based on older name on plant tag from nursery
+Collector: Michael B. Piep   18.018   
+Date: 2018-06-27
+Verbatim Date: 27 June 2018
+Locality: United States, Utah, Cache, Logan, private residence at 480 Canyon Road
+Habitat: Cultivated hothouse plant
+Description: Barrel cactus 2.5 - 3 inches tall; ribs 8; flowers approaching 3 inches long, pink
+Reproductive Condition: flower
+Notes: Specimen consists only of 2 flowers and 1 cluster of spines from a rib; Cultivated or Captive

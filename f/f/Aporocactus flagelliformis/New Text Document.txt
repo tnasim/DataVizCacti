@@ -1,0 +1,13 @@
+1.
+University of South Florida Herbarium (USF)
+Catalog #: 119397
+Occurrence ID (GUID): 56341618-6619-41AB-8D93-E57FD0C357ED
+Taxon: Aporocactus flagelliformis (L.) Lem.	
+Family: Cactaceae
+Collector: C. Hernandez A., R. Cedillo Trigos   1176   
+Date: 1971-04-24
+Verbatim Date: 1971-4-24
+Locality: Mexico, Veracruz, Viborillas, Huayacocotla.
+Elevation: 2210 meters	Verbatim Elevation: 2210 m
+Habitat: Bosque de encinos; suelo profundo; pinos y encinos.
+Reproductive Condition: Flower

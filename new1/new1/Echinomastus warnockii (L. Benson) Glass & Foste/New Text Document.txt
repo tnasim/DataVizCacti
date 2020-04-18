@@ -1,0 +1,15 @@
+Catalog #: DES00041649
+Occurrence ID (GUID): 6ffbadbc-bd56-4ef2-8a51-1923104c310e
+Taxon: Echinomastus warnockii (L. Benson) Glass & Foster	
+Family: Cactaceae
+Collector: Wendy Hodgson   8953   
+Date: 1995-04-05
+Additional Collectors: Ted Anderson, Liz Slauson, Jackie Poole
+Locality: USA, Texas, Brewster County, Big Bend National Park, Willow Springs Site.
+29.309333  -103.035317
+Verbatim Coordinates: 29d 18.56m N; 103d 2.119m W
+Elevation: 990 meters (3247ft)
+Habitat: Low rocky hills
+Associated Species: Larrea, Tiquilia, Leucophyllum candidum, Agave lechuguilla, Euphorbia antisyphilitica, Opuntia phaeacantha, Opuntia macrocentra, Tucca treculeana, Sclerocactus mariposensis, Echinocereus dasyacanthus.
+Description: Plants occasional, small, single.
+Reproductive Condition: stems

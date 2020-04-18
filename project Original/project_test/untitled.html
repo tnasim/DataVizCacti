@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+    <html>
+      <head>
+        <title>test sandbox 8</title>
+
+        <style type="text/css">
+          #main {
+            margin: 60px 15px; 
+          }
+          #map { 
+            min-height: 600px; 
+            min-width: 800px; 
+          }
+        </style>
+
+            <script src="http://maps.google.com/maps/api/js?v=3&sensor=false" type="text/javascript"></script>
+        <script>
+          // code to draw map
+          var map;
+          var col = '#FF0000';
+          var link ;
+          var latLng;
+          var polypoints;
+
+          function initialize() {
+var locations_programs = [
+   ['Christie Lake Camp', 44.803033, -76.418031, 1, 'http://www.christielakekids.com/_images/map_pins/events/canoe-for-kids.png', ''],    
+   ['Caldwell Community Centre', 45.373083, -75.735550, 1, 'http://www.christielakekids.com/_images/map_pins/events/caldwell-community-centre.png', ''],    
+   ['Dempsey Community Centre', 45.401887, -75.627530, 1, 'http://www.christielakekids.com/_images/map_pins/events/dempsey-community-centre.png', ''],    
+   ['Brewer Arena', 45.389560, -75.691445, 1, 'http://www.christielakekids.com/_images/map_pins/events/brewer-arena.png', '']
+
+];
+
+var markersArray = [];
+var markers = {};
+var mapOptions = {
+
+    center: new google.maps.LatLng(45.4214, -75.6919),
+    zoom: 10,
+    scrollwheel: true,
+    scaleControl: true,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    zoomControl: true,
+    zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.LARGE,
+        position: google.maps.ControlPosition.RIGHT_TOP
+      },
+    panControl: true,
+        panControlOptions: {
+        position: google.maps.ControlPosition.TOP_RIGHT
+      }
+  };
+
+  map = new google.maps.Map(document.getElementById('map'),
+  mapOptions);
+
+
+ //***  PROGRAMS
+
+  var marker, i;
+  var id = 'programs';
+
+  for (i = 0; i < locations_programs.length; i++) {  
+    var id = 'programs' + i;
+
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations_programs[i][1], locations_programs[i][2]),
+      map: map
+      ,id: id
+      
+      ,url: locations_programs[i][5]
+      ,zIndex:100
+    });
+
+
+
+      google.maps.event.addListener(marker, 'mouseover', function(event) {
+          this.setIcon('http://www.christielakekids.com/_images/map_pins/events/canoe-for-kids.png');
+      });
+      google.maps.event.addListener(marker, 'mouseout', function(event) {
+          this.setIcon('http://www.christielakekids.com/_images/new/blue_circle.png');
+      });
+
+
+
+  }
+}
+  google.maps.event.addDomListener(window, 'load', initialize); 
+        </script>
+      </head>
+      <body>
+             <div id="map"></div>
+       </body>
+    </html>

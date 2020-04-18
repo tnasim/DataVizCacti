@@ -1,0 +1,16 @@
+Catalog #: ASU0053122
+Occurrence ID (GUID): 2e8f13d0-c7e0-4c39-9ba3-e475bc58323c
+Secondary Catalog #: 183382
+Taxon: Echinocereus arizonicus subsp. matudae (Bravo) Rutow	
+Family: Cactaceae
+Determiner: Wolfgang Blum	(Dec 2011)
+ID Remarks: from SEINet
+ Show Determination History
+Collector: John M. Miller   834   
+Date: 1982-06-13
+Additional Collectors: B. Westlund
+Locality: Mexico, Chihuahua, Foothills of the Sierra Madre Occidental at Rancho Tapiacitas ca. 13 miles NW of the Casa Grandes/Col. Juarez Hwy.
+30.397024  -108.196583 +-10000m.
+Habitat: Dry volcanic hills above a canyon.
+Associated Species: Juglans, Platanus
+Description: Common

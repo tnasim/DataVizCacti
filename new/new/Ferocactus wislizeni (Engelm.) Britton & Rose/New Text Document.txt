@@ -1,0 +1,21 @@
+
+Scientific Name: Ferocactus wislizeni (Engelm.) Britton & Rose
+Photographer: Liz Makings
+Manager: ASU Vascular Plant Herbarium
+Locality: San Pedro Riparian National Conservation Area
+Copyright Details
+Open Medium Sized Image
+
+
+2.
+Occurrence ID (GUID): 007f278b-0003-4a35-93fc-f034cf5b2e9b
+Taxon: Ferocactus wislizeni (Engelm.) Britt. & Rose	
+Family: Cactaceae
+Collector: Sue Rutman      
+Date: 2006-08-20
+Locality: USA, Arizona, Pima County, Why. Roadside of Hwy 86, just east of intersection with Hwy 85, near Coyote Howls RV park.
+32.263261  -112.736163 +-100m.  WGS84
+Georeference Remarks: GoogleEarth used to select point.
+Elevation: 550 meters (1804ft)
+Habitat: Sonoran Desert.
+Substrate: Road shoulder
