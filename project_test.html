@@ -84,10 +84,10 @@ div.tooltip {
 
 <body>
     <h2 class="heading">Location-Wise Visualization of Cactus</h2>
-    
+
     <label for="species" class="speciesentry">Search Species: </label>
     <input  type="text" id="species" class="textentry" onchange="markLocationOnMap(this.value);marklocationrext(this.value)" value="Please Enter the Species Name";/>
-    <p id='not' class="notify"></p> 
+    <p id='not' class="notify"></p>
     <script type="text/javascript">
 
     /*  This visualization was made possible by modifying code provided by:
@@ -186,18 +186,18 @@ div.tooltip {
                         return "rgb(213,222,217)";
                     }
                 });
-            
+
             // Map the cities I have lived in!
-            datt=d3.csv("cities 1.csv", function(data) {
-                
-                
+            datt=d3.csv("dataset.csv", function(data) {
+
+
                 for (i = 0; i < data.length; i++) {
                     //console.log(data[i]);
                     datt[data[i].Species.replace(/ /g, "_").toLowerCase()]=data[i].Description;
                     }
                 svg.selectAll("circles")
                     .data(data)
-                    
+
                     .enter()
                     .append("image")
                     .filter(function(d){ return d.TRUE ==1; })
@@ -205,15 +205,23 @@ div.tooltip {
                         return d.Species.replace(/ /g, "_").toLowerCase();})
                     .attr('xlink:href', 'cactusflower.png')
                     .attr("x", function(d) {
-                        return projection([d.lon, d.lat])[0]-20;
+                        try {
+                            return projection([d.lon, d.lat])[0]-20;
+                        } catch(e) {
+                            return 0;
+                        }
                     })
                     .attr("y", function(d) {
-                        return projection([d.lon, d.lat])[1]-20;
+                        try {
+                            return projection([d.lon, d.lat])[1]-40;
+                        } catch(e) {
+                            return 0;
+                        }
                     })
-                    
+
                     .attr('width', 40)
-                    .attr('height', 40) 
-                                    
+                    .attr('height', 40)
+
 
                     // Modification of custom tooltip code provided by Malcolm Maclean, "D3 Tips and Tricks"
                     // http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
@@ -224,7 +232,7 @@ div.tooltip {
                     	else{
                     		alert("This is cactus");
                     	}
-                    	
+
                     })
 
                     .on("mouseover", function(d) {
@@ -252,7 +260,7 @@ div.tooltip {
                     });
                     svg.selectAll("circles")
                     .data(data)
-                    
+
                     .enter()
                     .append("image")
                     .attr("class","circle_")
@@ -261,14 +269,22 @@ div.tooltip {
                         return d.Species.replace(/ /g, "_").toLowerCase();})
                   .attr('xlink:href', 'cactus.svg')
                     .attr("x", function(d) {
-                        return projection([d.lon, d.lat])[0]-20;
+                        try {
+                            return projection([d.lon, d.lat])[0]-20;
+                        } catch(e) {
+                            return 0;
+                        }
                     })
                     .attr("y", function(d) {
-                        return projection([d.lon, d.lat])[1]-20;
+                        try {
+                            return projection([d.lon, d.lat])[1]-40;
+                        } catch(e) {
+                            return 0;
+                        }
                     })
-                    
+
                     .attr('width', 40)
-                    .attr('height', 40) 
+                    .attr('height', 40)
 
 
                      .on("click",function(d){
@@ -278,7 +294,7 @@ div.tooltip {
                     	else{
                     		alert("This is Classified as Cactus without Flowers");
                     	}
-                    	
+
                     })
                     .on("mouseover", function(d) {
                         div.transition()
@@ -307,8 +323,8 @@ div.tooltip {
         });
 
     return datt;});
-    var datt=d3.csv("cities 1.csv", function(data) {
-                
+    var datt=d3.csv("dataset.csv", function(data) {
+
                 var datt={};
 
                 for (i = 0; i < data.length; i++) {
@@ -351,28 +367,28 @@ div.tooltip {
             .text("")
             return
         }
-        
+
 
 
         circle
             .transition()
             .duration(1500)
             .attr('width', 80)
-            .attr('height', 80) 
+            .attr('height', 80)
             .transition()
-            .duration(1500) 
+            .duration(1500)
             .attr('width', 40)
             .attr('height', 40) ;
 
         var elementId =" "
-           
-            
 
-            
+
+
+
     }
     function marklocationrext(species_name){
     }
-    
+
 
 
 
