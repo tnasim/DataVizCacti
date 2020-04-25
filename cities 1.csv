@@ -1,9 +1,22 @@
-years,Species,place,lat,lon,imag,Description
-3,Astrophytum asterias,"UCDavis Botanical Conservatory (Yolo County, California, US",38.5414347,-121.7570624,one.jpg,
-3,Ferocactus cylindraceus,"Joshua Tree National Monument (Riverside County, California, US)",33.9002347,-116.1408778,1.jpg,
-3,Ferocactus wislizeni,"USA, Arizona, Pima County",32.263261,-112.736163,three.jpg,"Elevation: 550 meters (1804ft), Habitat: Sonoran Desert., Substrate: Road shoulder"
-3,Grusonia pulchella,"Washoe County, Nevada, US",40.5639929,-121.8322724,four.jpg,
-3,Gymnocalycium stenopleurum,"United States, Utah, Cache, Logan, private residence at 480 Canyon Road",41.7341801,-111.8254411,five.jpg,"Barrel cactus 2.5 - 3 inches tall; ribs 8; flowers approaching 3 inches long, pink"
-3,Peniocereus viperinus,"San Diego County, California, US",33.0168295,-117.4064983,2.jpg,
-3,Grusonia parishii,"U.S.A., Arizona, Mohave, Cottonwood Wash.",36.3186116,-113.9998256,six.jpg,
-,,"Cultivation, Salt Lake County, Utah",39.808352,-113.9998256,,
+years,Species,place,lat,lon,imag,Description,TRUE,Predict
+3,Astrophytum asterias,"UCDavis Botanical Conservatory (Yolo County, California, US",38.5414347,-121.7570624,one.jpg,,1,1
+3,Ferocactus cylindraceus,"Joshua Tree National Monument (Riverside County, California, US)",33.9002347,-116.1408778,1.jpg,,1,1
+3,Ferocactus wislizeni,"USA, Arizona, Pima County",32.263261,-112.736163,three.jpg,"Elevation: 550 meters (1804ft), Habitat: Sonoran Desert., Substrate: Road shoulder",1,1
+3,Grusonia pulchella,"Washoe County, Nevada, US",40.5639929,-121.8322724,four.jpg,,1,1
+3,Gymnocalycium stenopleurum,"United States, Utah, Cache, Logan, private residence at 480 Canyon Road",41.7341801,-111.8254411,five.jpg,"Barrel cactus 2.5 - 3 inches tall; ribs 8; flowers approaching 3 inches long, pink",1,0
+3,Peniocereus viperinus,"San Diego County, California, US",33.0168295,-117.4064983,2.jpg,,1,1
+3,Grusonia parishii,"U.S.A., Arizona, Mohave, Cottonwood Wash.",36.3186116,-113.9998256,six.jpg,,0,0
+3,Pedicactus despainii,"Cultivation, Salt Lake County, Utah",40.758701,-111.876183,Pediocactdespainii.jpg,,1,1
+3,Echinomastus warnockii,"USA, Texas, Brewster County, Big Bend National Park, Willow Springs Site.",29.309333,-103.035317,echinomactoswor.jpg,,0,0
+3,Ariocarpus fissuratus,"Pecos County, Texas",30.825321,-102.62162,Ariocarpusfissuratus.jpg,,1,1
+3,Cereus undatus Haw,"Kailua-Kona, Hawaii, Hawaii (Hawaii, US)",19.647369,-155.993011,CereusHaw.jpg,,1,1
+3,Kailua-Kona,"Kailua-Kona, Hawaii, Hawaii (Hawaii, US)",19.647369,-154.993011,CereusHaw.jpg,,1,1
+3,Cereus viridiflorus Engelm,"6 miles NW of Santa Fe (Santa Fe County, New Mexico, US)",35.691544,-105.944183,CereusiridifloruEngelm.jpg,,1,1
+3,Disocactus Lindl,Scotsdale,33.501324,-111.925278,DisocactusLindl.jpg,,1,0
+3,Echinocactus emoryi Engelm,"Arizona-Sonora Desert Museum, Tucson, Pima County, Arizona, US (32.24335, -111.166921)",32.24335,-111.166921,EchinocactusemoryiEngelm.jpg,,1,1
+3,Echinocactus horizonthalonius Lem,Sonoran Desert Museum,32.24335,-112.166921,EchinocactushorizonthaloniusLem.jpg,,1,1
+3,Parodia,phoenix desert nursery,32.66539,-113.108826,Parodia.jpg,,0,1
+3,Acanthocereus tetragonus,"United States, Texas, Cameron",30.858027,-96.975975,Acanthocereustetragonus.jpg,,0,0
+3,Cleistocactus baumannii,"United States, California, Los Angeles Co., Arcadia.",36.7014631,-118.7559974,Cleistocactusbaumannii.jpg,,0,0
+3,Cleistocactus baumannii Lem,"U.S.A., Missouri, Boone, University of Missouri.",38.7604815,-99.5120986,CleistocactusbaumanniiLem.jpg,,0,0
+3,Cleistocactus smaragdiflorus Britton & Rose,"UCDavis Botanical Conservatory (Yolo County, California, US",37.5414347,-121.7570624,CleistocactussmaragdiflorusBritton&Rose.jpg,,0,0

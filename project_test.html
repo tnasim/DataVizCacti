@@ -4,10 +4,17 @@
 <meta charset="utf-8">
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <style type="text/css">
+@media screen and (min-width: 500px) and (min-width: 500px){
+   body {
+      width:1200px;
+      height: 800px;
+      font: 11px sans-serif;
+   }
+}
 
 .heading{
     position:absolute;
-    left:800px;
+    left:450px;
     font: 40px sans-serif;
     color:rgb(143, 111, 22);
 }
@@ -31,9 +38,7 @@ div.tooltip {
 }
 
 /* Legend Font Style */
-body {
-    font: 11px sans-serif;
-}
+
 
 /* Legend Position Style */
 .legend {
@@ -41,14 +46,48 @@ body {
     left:800px;
     top:350px;
 }
+.textentry {
+    position  :absolute;
+    top:       500px;  /* I usually locate relative to top  */
+    left:      1200px; /* left corner of container (screen) */
+    height:    20px;
+    width: 300px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font: 16px sans-serif;
+        /*  often useful to keep screen orderly */
+  }
+  .speciesentry {
+    position  :absolute;
+    top:       480px;  /* I usually locate relative to top  */
+    left:      1200px; /* left corner of container (screen) */
+    height:    8px;  /*  often useful to keep screen orderly */
+    font: 18px sans-serif;
+    font-weight: bold;
+  }
+  .notify {
+    position  :absolute;
+    top:       530px;  /* I usually locate relative to top  */
+    left:      1200px; /* left corner of container (screen) */
+    height:    8px;  /*  often useful to keep screen orderly */
+    font: 16px sans-serif;
+    font-weight: bolder;
+  }
+  }
 
 </style>
 </head>
 
 <body>
     <h2 class="heading">Location-Wise Visualization of Cactus</h2>
-    <label for="species">Search Species: </label>
-    <input  type="text" id="species" class="textentry" onchange="markLocationOnMap(this.value)"/>
+    
+    <label for="species" class="speciesentry">Search Species: </label>
+    <input  type="text" id="species" class="textentry" onchange="markLocationOnMap(this.value);marklocationrext(this.value)" value="Please Enter the Species Name";/>
+    <p id='not' class="notify"></p> 
     <script type="text/javascript">
 
     /*  This visualization was made possible by modifying code provided by:
@@ -64,13 +103,13 @@ body {
 
 
     //Width and height of map
-    var width = 1820;
-    var height = 1000;
+    var width = 1420;
+    var height = 800;
 
     // D3 Projection
     var projection = d3.geo.albersUsa()
         .translate([width / 2, height / 2]) // translate to center of screen
-        .scale([2000]); // scale things down so see entire US
+        .scale([1500]); // scale things down so see entire US
 
     // Define path generator
     var path = d3.geo.path() // path generator that will convert GeoJSON to SVG paths
@@ -94,9 +133,9 @@ body {
         .append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
-
+    var datt={}
     // Load in my states data!
-    d3.csv("test.csv", function(data) {
+    datt=d3.csv("test.csv", function(data) {
         color.domain([0, 1, 2, 3]); // setting the range of the input data
 
         // Load GeoJSON data and merge with states data
@@ -147,36 +186,50 @@ body {
                         return "rgb(213,222,217)";
                     }
                 });
-
-
+            
             // Map the cities I have lived in!
-            d3.csv("cities 1.csv", function(data) {
-                console.log(data);
-
-                svg.selectAll("circle")
+            datt=d3.csv("cities 1.csv", function(data) {
+                
+                
+                for (i = 0; i < data.length; i++) {
+                    //console.log(data[i]);
+                    datt[data[i].Species.replace(/ /g, "_").toLowerCase()]=data[i].Description;
+                    }
+                svg.selectAll("circles")
                     .data(data)
+                    
                     .enter()
-                    .append("circle")
+                    .append("image")
+                    .filter(function(d){ return d.TRUE ==1; })
                     .attr("id", function(d) {
-                        return d.Species.replace(/ /g, "_").toLowerCase();
+                        return d.Species.replace(/ /g, "_").toLowerCase();})
+                    .attr('xlink:href', 'cactusflower.png')
+                    .attr("x", function(d) {
+                        return projection([d.lon, d.lat])[0]-20;
                     })
-                    .attr("cx", function(d) {
-                        console.log(d);
-                        return projection([d.lon, d.lat])[0];
+                    .attr("y", function(d) {
+                        return projection([d.lon, d.lat])[1]-20;
                     })
-                    .attr("cy", function(d) {
-                        return projection([d.lon, d.lat])[1];
-                    })
-                    .attr("r", function(d) {
-                        return Math.sqrt(d.years) * 4;
-                    })
-                    .style("fill", "rgb(217,91,67)")
-                    .style("opacity", 0.85)
+                    
+                    .attr('width', 40)
+                    .attr('height', 40) 
+                                    
 
                     // Modification of custom tooltip code provided by Malcolm Maclean, "D3 Tips and Tricks"
                     // http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
+                    .on("click",function(d){
+                    	if (d.Predict==0){
+                    		alert("This is Flower");
+                    	}
+                    	else{
+                    		alert("This is cactus");
+                    	}
+                    	
+                    })
 
                     .on("mouseover", function(d) {
+
+
                         div.transition()
                             .duration(200)
                             .style("opacity", .9);
@@ -184,7 +237,11 @@ body {
 
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY - 28) + "px");
-                        div.html("<p>Species: " + d.Species + "</p><p>Location: " + d.place + "</p></h1><ahref='http://en.wikipedia.org/wiki/Tombouctou_Region'><img  src=" + d.imag + " style=width:100px;height:120px; ></ahref><p>Other Attributes: " + d.Description + "</p> ");
+                        div.html("<p>Species: " + d.Species + "</p><p>Location: " + d.place + "</p></h1><ahref='http://en.wikipedia.org/wiki/Tombouctou_Region'><img  src=" + d.imag + " style=width:100px;height:120px; ></ahref><p id="+"demo"+"></p> ");
+                        if (d.Description!=""){
+                            document.getElementById("demo").innerHTML="Attributes"+d.Description;
+                            //console.log(typeof d.Description);
+                        }
                     })
 
                     // fade out tooltip on mouse out
@@ -193,30 +250,132 @@ body {
                             .duration(500)
                             .style("opacity", 0);
                     });
-            });
+                    svg.selectAll("circles")
+                    .data(data)
+                    
+                    .enter()
+                    .append("image")
+                    .attr("class","circle_")
+                  .filter(function(d){ return d.TRUE ==0; })
+                  .attr("id", function(d) {
+                        return d.Species.replace(/ /g, "_").toLowerCase();})
+                  .attr('xlink:href', 'cactus.svg')
+                    .attr("x", function(d) {
+                        return projection([d.lon, d.lat])[0]-20;
+                    })
+                    .attr("y", function(d) {
+                        return projection([d.lon, d.lat])[1]-20;
+                    })
+                    
+                    .attr('width', 40)
+                    .attr('height', 40) 
+
+
+                     .on("click",function(d){
+                    	if (d.Predict==0){
+                    		alert("This is Classified as Cactus with Flower");
+                    	}
+                    	else{
+                    		alert("This is Classified as Cactus without Flowers");
+                    	}
+                    	
+                    })
+                    .on("mouseover", function(d) {
+                        div.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        div.text("Location: " + d.place)
+
+                            .style("left", (d3.event.pageX) + "px")
+                            .style("top", (d3.event.pageY - 28) + "px");
+                        div.html("<p>Species: " + d.Species + "</p><p>Location: " + d.place + "</p></h1><ahref='http://en.wikipedia.org/wiki/Tombouctou_Region'><img  src=" + d.imag + " style=width:100px;height:120px; ></ahref><p id="+"demo"+"></p> ");
+                        if (d.Description!=""){
+                            document.getElementById("demo").innerHTML="Attributes"+d.Description;
+                            //console.log(typeof d.Description);
+                        }
+                    })
+                    .on("mouseout", function(d) {
+                        div.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                    })
+
+             return datt;});
 
             // Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
 
-
         });
 
-    });
+    return datt;});
+    var datt=d3.csv("cities 1.csv", function(data) {
+                
+                var datt={};
+
+                for (i = 0; i < data.length; i++) {
+                    //console.log(data[i]);
+                    datt[data[i].Species.replace(/ /g, "_").toLowerCase()]=data[i].Description;
+                    }
+                    });
 
 
+
+
+
+
+    console.log(datt);
     /*
     Update the size and color of the marker circle on map.
     */
-    function markLocationOnMap(species_name) {
+    function markLocationOnMap(species_name,datt) {
         var elementId = "#".concat(species_name.replace(/ /g, "_").toLowerCase());
-        var circle = svg.select(elementId);
-        var currentRadius = circle.attr("r");
-        var newRadius = currentRadius * 2;
+        //console.log(elementId)
+        var circle = svg.selectAll(elementId);
+        //console.log(circle)
+        //var currentwidth = circle.attr("width");
+        //console.log(currentwidth)
+        //var currentheight = circle.attr("height");
+        //var newwidht = currentwidth * 2;
+       // var newheight=currentheight*2;
+        console.log('here')
+       //Sconsole.log(d)
+        var l= (circle[0].length)
+
+        if (l==0){
+            console.log('noti')
+
+            d3.select("p").text("Please check the Spelling")
+            .transition()
+            .duration(3000)
+            .transition()
+            .duration(3000)
+            .text("")
+            return
+        }
+        
+
+
         circle
             .transition()
             .duration(1500)
-            .attr("r", newRadius)
-            .style("fill", "rgb(255,255,0)");
+            .attr('width', 80)
+            .attr('height', 80) 
+            .transition()
+            .duration(1500) 
+            .attr('width', 40)
+            .attr('height', 40) ;
+
+        var elementId =" "
+           
+            
+
+            
     }
+    function marklocationrext(species_name){
+    }
+    
+
+
+
     </script>
 </body>
 </html>
