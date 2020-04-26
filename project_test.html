@@ -88,6 +88,7 @@ div.tooltip {
     <label for="species" class="speciesentry">Search Species: </label>
     <input  type="text" id="species" class="textentry" onchange="markLocationOnMap(this.value);marklocationrext(this.value)" value="Please Enter the Species Name";/>
     <p id='not' class="notify"></p>
+    <h3><a href="choropleth.html">Cactus Population Based Choropleth</a></h3>
     <script type="text/javascript">
 
     /*  This visualization was made possible by modifying code provided by:
@@ -107,9 +108,9 @@ div.tooltip {
     var height = 800;
 
     // D3 Projection
-    var projection = d3.geo.albersUsa()
+    var projection = d3.geo.albers()
         .translate([width / 2, height / 2]) // translate to center of screen
-        .scale([1500]); // scale things down so see entire US
+        .scale([1000]); // scale things down so see entire US
 
     // Define path generator
     var path = d3.geo.path() // path generator that will convert GeoJSON to SVG paths
@@ -139,7 +140,8 @@ div.tooltip {
         color.domain([0, 1, 2, 3]); // setting the range of the input data
 
         // Load GeoJSON data and merge with states data
-        d3.json("us-states.json", function(json) {
+        // d3.json("us-states.json", function(json) {
+        d3.json("americas.json", function(json) {
 
             // Loop through each state data value in the .csv file
             for (var i = 0; i < data.length; i++) {
@@ -205,11 +207,11 @@ div.tooltip {
                         return d.Species.replace(/ /g, "_").toLowerCase();})
                     .attr('xlink:href', 'cactusflower.png')
                     .attr("x", function(d) {
-                        try {
-                            return projection([d.lon, d.lat])[0]-20;
-                        } catch(e) {
-                            return 0;
-                        }
+                        // try {
+                            return projection([d.lon, d.lat])[0]-40;
+                        // } catch(e) {
+                        //     return 0;
+                        // }
                     })
                     .attr("y", function(d) {
                         try {
