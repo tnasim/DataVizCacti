@@ -1,0 +1,246 @@
+
+<!-- saved from url=(0079)http://swbiodiversity.org/seinet/collections/individual/index.php?occid=3208388 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>SEINet Portal Network Detailed Collection Record Information</title>
+	
+	<meta name="description" content="Occurrence author: Raul Puente,565">
+	<meta name="keywords" content="0fc61e19-f146-4276-be24-2f0f75e0acd9">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
+<link href="./SEINet Portal Network Detailed Collection Record Information_files/jquery-ui.css" type="text/css" rel="stylesheet"><link href="./SEINet Portal Network Detailed Collection Record Information_files/base.css" type="text/css" rel="stylesheet">
+<link href="./SEINet Portal Network Detailed Collection Record Information_files/main.css" type="text/css" rel="stylesheet">
+
+	<script src="./SEINet Portal Network Detailed Collection Record Information_files/sdk.js" async="" crossorigin="anonymous"></script><script id="twitter-wjs" src="./SEINet Portal Network Detailed Collection Record Information_files/widgets.js"></script><script id="facebook-jssdk" src="./SEINet Portal Network Detailed Collection Record Information_files/sdk(1).js"></script><script async="" src="./SEINet Portal Network Detailed Collection Record Information_files/analytics.js"></script><script src="./SEINet Portal Network Detailed Collection Record Information_files/jquery.js" type="text/javascript"></script>
+	<script src="./SEINet Portal Network Detailed Collection Record Information_files/jquery-ui.js" type="text/javascript"></script>
+	<script src="./SEINet Portal Network Detailed Collection Record Information_files/js"></script>
+	<script type="text/javascript">
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-50599404-5', 'swbiodiversity.org');
+	  ga('send', 'pageview');
+	
+	</script>
+	<script type="text/javascript">
+		var tabIndex = 0;
+		var map;
+		var mapInit = false;
+
+		$(document).ready(function() {
+			$('#tabs').tabs({
+				beforeActivate: function(event, ui) {
+					if(document.getElementById("map_canvas") && ui.newTab.index() == 1 && !mapInit){
+						mapInit = true;
+						initializeMap();
+					}
+					return true;
+				},
+				active: tabIndex
+			});
+
+			$("#tabs").tabs().css({
+				'min-height': '400px',
+				'overflow': 'auto'
+			});
+		});
+
+		function toggle(target){
+			var objDiv = document.getElementById(target);
+			if(objDiv){
+				if(objDiv.style.display=="none"){
+					objDiv.style.display = "block";
+				}
+				else{
+					objDiv.style.display = "none";
+				}
+			}
+			else{
+				var divObjs = document.getElementsByTagName("div");
+			  	for (i = 0; i < divObjs.length; i++) {
+			  		var obj = divObjs[i];
+			  		if(obj.getAttribute("class") == target || obj.getAttribute("className") == target){
+							if(obj.style.display=="none"){
+								obj.style.display="inline";
+							}
+					 	else {
+					 		obj.style.display="none";
+					 	}
+					}
+				}
+			}
+		}
+
+		function verifyVoucherForm(f){
+			var clTarget = f.elements["clid"].value;
+			if(clTarget == "0"){
+				window.alert("Please select a checklist");
+				return false;
+			}
+			return true;
+		}
+
+		function verifyCommentForm(f){
+			if(f.commentstr.value.replace(/^\s+|\s+$/g,"")){
+				return true;
+			}
+			alert("Please enter a comment");
+			return false;
+		}
+
+		function openIndividual(target) {
+			occWindow=open("index.php?occid="+target,"occdisplay","resizable=1,scrollbars=1,toolbar=0,width=900,height=600,left=20,top=20");
+			if (occWindow.opener == null) occWindow.opener = self;
+		}
+
+					function initializeMap(){
+				var mLatLng = new google.maps.LatLng(30.86328,-115.2248);
+				var dmOptions = {
+					zoom: 8,
+					center: mLatLng,
+					marker: mLatLng,
+					mapTypeId: google.maps.MapTypeId.TERRAIN,
+					scaleControl: true
+				};
+				map = new google.maps.Map(document.getElementById("map_canvas"), dmOptions);
+				//Add marker
+				var marker = new google.maps.Marker({
+					position: mLatLng,
+					map: map
+				});
+			}
+				</script>
+<script charset="utf-8" src="./SEINet Portal Network Detailed Collection Record Information_files/button.93a0c25c2d2f3081c705c98c2d9dec0e.js"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style><script type="text/javascript" charset="UTF-8" src="./SEINet Portal Network Detailed Collection Record Information_files/common.js"></script><script type="text/javascript" charset="UTF-8" src="./SEINet Portal Network Detailed Collection Record Information_files/util.js"></script></head>
+<body>
+	<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>
+	<script>
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!-- This is inner text! -->
+	<div id="innertext">
+					<div id="tabs" style="margin: 10px; clear: both; min-height: 400px; overflow: auto;" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+				<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+					<li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="occurtab" aria-labelledby="ui-id-1" aria-selected="true"><a href="http://swbiodiversity.org/seinet/collections/individual/index.php?occid=3208388#occurtab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1"><span>Details</span></a></li>
+											<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="maptab" aria-labelledby="ui-id-2" aria-selected="false"><a href="http://swbiodiversity.org/seinet/collections/individual/index.php?occid=3208388#maptab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-2"><span>Map</span></a></li>
+											<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="commenttab" aria-labelledby="ui-id-3" aria-selected="false"><a href="http://swbiodiversity.org/seinet/collections/individual/index.php?occid=3208388#commenttab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3"><span>Comments</span></a></li>
+					<li class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="ui-tabs-1" aria-labelledby="ui-id-4" aria-selected="false"><a href="http://swbiodiversity.org/seinet/collections/individual/linkedresources.php?occid=3208388&amp;tid=31795&amp;clid=0&amp;collid=1" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-4"><span>Linked Resources</span></a></li>
+									</ul>
+				<div id="occurtab" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
+					<div style="float:right;">
+						<div style="float:right;">
+							<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 61px; height: 20px;" title="Twitter Tweet Button" src="./SEINet Portal Network Detailed Collection Record Information_files/tweet_button.6787510241df65d128e2b60207ad4c25.en.html" data-url="swbiodiversity.org/seinet/collections/individual/index.php?occid=3208388&amp;clid=0"></iframe>
+							<script>
+								window.twttr=(function(d,s,id){
+									var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};
+									if(d.getElementById(id))return;js=d.createElement(s);
+									js.id=id;js.src="https://platform.twitter.com/widgets.js";
+									fjs.parentNode.insertBefore(js,fjs);t._e=[];
+									t.ready=function(f){t._e.push(f);};
+									return t;
+								}(document,"script","twitter-wjs"));
+							</script>
+						</div>
+						<div style="float:right;margin-right:10px;">
+							<div class="fb-share-button fb_iframe_widget" data-href="" data-layout="button_count" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;container_width=0&amp;href=http%3A%2F%2Fswbiodiversity.org%2Fseinet%2Fcollections%2Findividual%2Findex.php%3Foccid%3D3208388&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey"><span style="vertical-align: bottom; width: 77px; height: 20px;"><iframe name="f549038ce61f4" width="1000px" height="1000px" data-testid="fb:share_button Facebook Social Plugin" title="fb:share_button Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./SEINet Portal Network Detailed Collection Record Information_files/share_button.html" style="border: none; visibility: visible; width: 77px; height: 20px;" class=""></iframe></span></div>
+						</div>
+					</div>
+					<div style="float:left;margin:15px 0px;text-align:center;font-weight:bold;width:120px;"><img border="1" height="50" width="50" src="./SEINet Portal Network Detailed Collection Record Information_files/asu-plants.jpg"></div>					<div style="padding:25px;font-size:18px;font-weight:bold;">
+						<div style="float:left;margin-right:5px">
+							Arizona State University Vascular Plant Herbarium						</div>
+						<div style="float:left;">
+							(ASU:Plants)						</div>
+					</div>
+					<div style="clear:both;margin-left:60px;">
+						<div>
+															<div>
+									<b>Catalog #:</b>
+									ASU0058013								</div>
+																<div>
+									<b>Occurrence ID (GUID):</b>
+									0fc61e19-f146-4276-be24-2f0f75e0acd9								</div>
+																<div title="Other Catalog Numbers">
+									<b>Secondary Catalog #:</b>
+									218198								</div>
+														</div>
+						<div>
+							<b>Taxon:</b>
+							<i>Opuntia munzii</i> C.B.Wolf							<br>
+														<b>Family:</b> Cactaceae						</div>
+						<div>
+													</div>
+						<div style="clear:both;">
+							<b>Collector:</b>
+							Raul Puente&nbsp;&nbsp;&nbsp;565&nbsp;&nbsp;&nbsp;						</div>
+						<div><b>Date: </b>1995-03-15</div>						<div>
+															<div>
+									<b>Additional Collectors:</b>
+									J. Rebman								</div>
+														</div>
+												<div>
+							<b>Locality:</b>
+							Mexico, Baja California, Mpio. de Mexicali. Llano el Moreno 12 km west of km 173 on Hwy 5, ca. 25 km north of San Felipe; base of Sierra San Felipe; San Felipe Desert, west of San Felipe.						</div>
+														<div style="margin-left:10px;">
+									30.86328&nbsp;&nbsp;-115.2248								</div>
+																<div style="margin-left:10px;">
+									<b>Verbatim Coordinates: </b>
+									30d 51.797m N, 115d 13.488m W								</div>
+																<div style="margin-left:10px;">
+									<b>Elevation:</b>
+									570 meters (1870ft)								</div>
+																<div style="clear:both;">
+									<b>Habitat:</b>
+									Desert flats, gravelly soil.								</div>
+																<div style="clear:both;">
+									<b>Associated Species:</b>
+									Cercidium microphyllum, Fouquieria splendens, Encelia farinosa, Ephedra trifurca, Larrea tridentata, Prosopis juliflora								</div>
+															<div style="clear:both;">
+								<b>Description:</b>
+								Plant about 180 cm, flowers yellow-greenish, 5 cm long x 5 cm in diameter at anthesis; ovary tuberculated, 3 cm long x 2.5 cm at widest part, tubercles 7 mm high with eliptic areoles, white wool with redish caduceus leaves, 2-5 mm long, caduceus spines with papiraceus sheet, 3:1 central erect 10-14 mm long; glochids white, 12-15 mm long; areoles with white wool and short glochids forming a brush on top of areole; sepals redish with red outer line, obovate with accuminate apex; inner segments yellow-green with redish tips and middle line, obovate with accuminate tips; stamens with green filaments and yellow anthers, stigma white cream, 5 lobed, lobes greenish; fruit dry covered with spines and glochids. Uncommon.							</div>
+													<div style="clear:both;padding:10px;">
+															<fieldset style="padding:10px;">
+									<legend><b>Specimen Images</b></legend>
+																			<div style="max-width:180;float:left;text-align:center;padding:5px;">
+											<a href="https://serv.biokic.asu.edu/imglib/h_seinet/seinet/ASU/ASU0058/ASU0058013.jpg" target="_blank">
+												<img border="1" src="./SEINet Portal Network Detailed Collection Record Information_files/ASU0058013_tn.jpg" title="" style="max-width:170;">
+											</a>
+											<div><a href="https://serv.biokic.asu.edu/imglib/h_seinet/seinet/ASU/ASU0058/ASU0058013.jpg" target="_blank">Open Medium Image</a></div><div><a href="https://serv.biokic.asu.edu/imglib/h_seinet/seinet/ASU/ASU0058/ASU0058013_lg.jpg" target="_blank">Open Large Image</a></div>										</div>
+																		</fieldset>
+														</div>
+												<div style="margin:5px 0px 5px 0px;">
+							<div style="margin-top:2px;"><b>Usage Rights:</b> <a href="http://creativecommons.org/licenses/by-nc/3.0/" target="_blank">CC BY-NC (Attribution-Non-Commercial)</a></div>						</div>
+						<div style="margin:3px 0px;"><b>Record ID:</b> 0fc61e19-f146-4276-be24-2f0f75e0acd9</div>
+
+						<div style="margin-top:10px;clear:both;">
+							For additional information on this specimen, please contact:
+														<a href="mailto:Elizabeth.Makings@asu.edu?subject=SEINet%20Portal%20Network%20occurrence:%20ASU0058013%20(218198)&amp;cc=seinetadmin@asu.edu&amp;body=Specimen%20being%20referenced:%20http://swbiodiversity.org/seinet/collections/individual/index.php?occid=3208388">
+								Elizabeth Makings (Elizabeth.Makings@asu.edu)							</a>
+						</div>
+													<div style="margin-bottom:10px;">
+																	See an error? <a href="http://swbiodiversity.org/seinet/profile/index.php?refurl=../collections/individual/index.php?occid=3208388">Login</a> to edit data
+																</div>
+												</div>
+				</div>
+										<div id="maptab" aria-labelledby="ui-id-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+							<div id="map_canvas" style="width:100%;height:600px;"></div>
+						</div>
+									<div id="commenttab" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+					<div style="font-weight:bold;font-size:120%;margin:20px;">No comments have been submitted</div>					<fieldset style="padding:20px;">
+						<legend><b>New Comment</b></legend>
+													<div style="margin:10px;">
+								<a href="http://swbiodiversity.org/seinet/profile/index.php?refurl=../collections/individual/index.php?tabindex=2&amp;occid=3208388">Login</a> to leave a comment.
+							</div>
+												</fieldset>
+
+				</div><div id="ui-tabs-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" aria-live="polite" aria-labelledby="ui-id-4" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;"></div>
+							</div>
+				</div>
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="./SEINet Portal Network Detailed Collection Record Information_files/widget_iframe.6787510241df65d128e2b60207ad4c25.html" title="Twitter settings iframe" style="display: none;"></iframe></body></html>

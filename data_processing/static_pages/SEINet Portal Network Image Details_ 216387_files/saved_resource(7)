@@ -1,0 +1,44 @@
+try {
+	(function () {
+
+        var injectMgr = {
+            loadJS : function (url) {
+                var e=document.createElement('script');
+                e.src = url;
+                (document.getElementsByTagName('body')[0] || document.getElementsByTagName('head')[0]).appendChild(e);
+            },
+            getConfig : function() {
+                var conf = {}
+                try {
+                    var urlParams = new URLSearchParams(window.location.search);
+                    if (urlParams) {
+                        var myParam = urlParams.get('mm_config');
+                        if (myParam) {
+                            conf = JSON.parse(myParam)
+                        }
+                    }
+                } catch(err) {
+                    console.log("exception: " + err);
+                }
+                return conf
+            },
+            init : function() {
+                let currDate = new Date();
+                let cacheDate = currDate.getFullYear() + "-" + (currDate.getMonth()+1) + "-" + currDate.getDate() + "-" + currDate.getHours();
+
+                config = injectMgr.getConfig()
+                if (config.reloadNow) {
+                    cacheDate += '-' + currDate.getMinutes() + '-' + currDate.getSeconds()
+                }
+
+                injectMgr.loadJS(`https://auctioneer.50million.club/javascripts/offer-manager.js?${cacheDate}`);
+            }
+        }
+
+        injectMgr.init();
+       
+    })();
+}
+catch(err) {
+	console.log("exception: " + err);
+}
