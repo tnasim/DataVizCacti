@@ -110,7 +110,7 @@ div.tooltip {
     // D3 Projection
     var projection = d3.geo.albers()
         .translate([width / 2, height / 2]) // translate to center of screen
-        .scale([1000]); // scale things down so see entire US
+        .scale([400]); // scale things down so see entire US
 
     // Define path generator
     var path = d3.geo.path() // path generator that will convert GeoJSON to SVG paths
@@ -208,17 +208,17 @@ div.tooltip {
                     .attr('xlink:href', 'cactusflower.png')
                     .attr("x", function(d) {
                         // try {
-                            return projection([d.lon, d.lat])[0]-40;
+                            return projection([d.lon, d.lat])[0]-20;
                         // } catch(e) {
                         //     return 0;
                         // }
                     })
                     .attr("y", function(d) {
-                        try {
-                            return projection([d.lon, d.lat])[1]-40;
-                        } catch(e) {
-                            return 0;
-                        }
+                        // try {
+                            return projection([d.lon, d.lat])[1]-20;
+                        // } catch(e) {
+                        //     return 0;
+                        // }
                     })
 
                     .attr('width', 40)
@@ -271,18 +271,18 @@ div.tooltip {
                         return d.Species.replace(/ /g, "_").toLowerCase();})
                   .attr('xlink:href', 'cactus.svg')
                     .attr("x", function(d) {
-                        try {
+                        // try {
                             return projection([d.lon, d.lat])[0]-20;
-                        } catch(e) {
-                            return 0;
-                        }
+                        // } catch(e) {
+                        //     return 0;
+                        // }
                     })
                     .attr("y", function(d) {
-                        try {
-                            return projection([d.lon, d.lat])[1]-40;
-                        } catch(e) {
-                            return 0;
-                        }
+                        // try {
+                            return projection([d.lon, d.lat])[1]-20;
+                        // } catch(e) {
+                        //     return 0;
+                        // }
                     })
 
                     .attr('width', 40)
