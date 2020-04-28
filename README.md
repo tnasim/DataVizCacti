@@ -58,7 +58,7 @@ This project applies some common Data Visualization techniques based on Cactus d
 *   Clone or download the above mentioned github project.
 *   From the root folder of the project, run the following command:
 *   `python -m http.server 8000 --bind 127.0.0.1`
-*   You can access it from theweb browser at: [localhost:8000](localhost:8000)
+*   You can access it from theweb browser at: [localhost:8000](http://localhost:8000)
 
 ## References
 *   **[SEINet Website](http://swbiodiversity.org/seinet/imagelib/index.php?taxon=Cactaceae):** We have collected all our cactus related data from this website. In order to collect specific details of each of the cactus, we scraped this website using python other programming techniques.
