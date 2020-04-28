@@ -39,6 +39,58 @@
   <script src="https://d3js.org/d3.geo.projection.v0.min.js"></script>
   <script src="https://d3js.org/topojson.v1.min.js"></script>
 
+
+  <style type=text/css>
+  * { box-sizing: border-box; }
+body {
+  font: 16px Arial;
+}
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+  </style>
   <style type="text/css">
   /*@media screen and (min-width: 500px) and (min-width: 500px){
      body {
@@ -253,8 +305,14 @@
                                     <button type="button" name="search" id="search-btn" class="btn btn-flat">
                                       <i class="mdi mdi-magnify"></i>
                                     </button>
-                                    <input type="text" id="species" onchange="markLocationOnMap(this.value);marklocationrext(this.value)" class="form-control" placeholder="Species name"
-                                      autofocus autocomplete="off" />
+                                    <!-- <form autocomplete="off" action="#" onsubmit="markLocationOnMap(this.value);marklocationrext(this.value)"> -->
+                                      <div class="autocomplete" style="width:300px;">
+                                        <input id="species" type="text" name="mySpecies"  onchange="markLocationOnMap(this.value);marklocationrext(this.value)" class="form-control" placeholder="Species name" autofocus autocomplete="off">
+                                      </div>
+                                      <!-- <input type="submit" id="btn-submit"> -->
+                                    <!-- </form> -->
+                                    <!-- <input type="text" id="species" onchange="markLocationOnMap(this.value);marklocationrext(this.value)" class="form-control" placeholder="Species name"
+                                      autofocus autocomplete="off" /> -->
                                   </div>
 
                                   <!-- TODO: Implement Autocomplete search from:
@@ -577,7 +635,7 @@ function markLocationOnMap(species_name,datt) {
     //var currentheight = circle.attr("height");
     //var newwidht = currentwidth * 2;
    // var newheight=currentheight*2;
-    console.log('here')
+    console.log(species_name)
    //Sconsole.log(d)
     var l= (circle[0].length)
 
@@ -615,7 +673,121 @@ function marklocationrext(species_name){
 }
 
 
+var species = ["Maihueniopsis colorea", "Parodia schumanniana", "Mammillaria sheldonii", "Eriosyce heinrichiana", "Echinocereus sanpedroensis", "Mammillaria blossfeldiana var. blossfeldiana", "Miqueliopuntia miquelii", "Turbinicarpus horripilus", "Echinocereus bonkerae subsp. apachensis", "Mammillaria dioica subsp. estebanensis", "Mammillaria standleyi", "Mammillaria aureilanata", "Gymnocalycium schroederianum subsp. paucicostatum", "Ferocactus townsendianus var. townsendianus", "Eriosyce subgibbosa var. nigrihorrida", "Cylindropuntia chuckwallensis", "Opuntia rastrera", "Cylindropuntia acanthocarpa x C. spinosior", "Echinocereus chloranthus subsp. rhyolithensis", "Thelocactus leucacanthus subsp. schmollii", "Pereskia humboldtii var. humboldtii", "Opuntia soederstromiana", "Cylindropuntia x neoarbuscula", "Cylindropuntia davisii", "Opuntia spraguei", "Eriosyce taltalensis subsp. pygmaea", "Eriosyce curvispina var. tuberisulcata", "Cylindropuntia acanthocarpa var. coloradensis", "Epiphyllum phyllanthus var. hookeri", "Cylindropuntia x congesta", "Cumulopuntia boliviana", "Mammillaria multidigitata", "Echinocereus stolonifer", "Opuntia caracassana", "Opuntia chisosensis", "Cereus nashii", "Cylindropuntia x tetracantha", "Gymnocalycium ritterianum", "Echinocereus barthelowanus", "Cereus hildmannianus subsp. uruguayanus", "Grusonia wrightiana", "Mammillaria lenta", "Opuntia pachyrrhiza", "Echinocereus stolonifer subsp. stolonifer", "Ferocactus histrix", "Tunilla microdisca", "Opuntia elata", "Mammillaria erythrosperma", "Cylindropuntia delgadilloana", "Weberocereus rosei", "Eriosyce engleri", "Cleistocactus icosagonus", "Echinocereus triglochidiatus var. triglochidiatus", "Cylindropuntia hystrix", "Trichocereus thelegonus", "Rhipsalis baccifera subsp. baccifera", "Copiapoa tocopillana", "Ferocactus peninsulae var. townsendianus", "Eriosyce odieri subsp. odieri", "Grusonia reflexispina", "Echinocereus enneacanthus subsp. brevispinus", "Opuntia zuniensis", "Opuntia azurea var. diplopurpurea", "Opuntia robinsonii", "Cleistocactus hyalacanthus", "Maihueniopsis glomerata", "Opuntia karwinskiana", "Cereus gummosus", "Parodia concinna", "Echinocereus occidentalis", "Turbinicarpus pseudopectinatus", "Mammillaria backebergiana", "Pereskia lychnidiflora", "Echinocactus polycephalus var. polycephalus", "Eriosyce limariensis", "Cylindropuntia munzii", "Cylindropuntia imbricata var. imbricata", "Opuntia polyacantha var. hystericina", "Cylindropuntia californica var. parkeri", "Echinocereus websterianus", "Eriosyce odieri", "Echinopsis pampana", "Opuntia cylindrica", "Opuntia pinkavae", "Parodia ottonis", "Echinocereus adustus", "Echinocereus ferreirianus", "Eriosyce crispa var. totoralensis", "Parodia taratensis", "Echinopsis tegeleriana", "Leuchtenbergia principis", "Tephrocactus aoracanthus", "Cleistocactus sepium var. morleyanus", "Cylindropuntia ganderi var. catavinensis", "Opuntia nemoralis", "Stenocereus yunckeri", "Maihueniopsis nigrispina", "Opuntia guilanchi", "Ferocactus tiburonensis", "Opuntia engelmannii", "Cylindropuntia californica subsp. parkeri", "Maihueniopsis domeykoensis", "Opuntia curvispina", "Disocactus schrankii", "Echinocereus maritimus var. hancockii", "Disocactus nelsonii", "Cereus childsii", "Opuntia x rooneyi", "Opuntia penicilligera", "Eriosyce crispa var. huascensis", "Cylindropuntia x viridiflora", "Cereus diffusus", "Opuntia martiniana", "Mammillaria fraileana", "Opuntia x carstenii", "Echinocereus reichenbachii var. perbellus", "Opuntia superbospina", "Cereus repandus", "Opuntia decumbens", "Opuntia ochrocentra", "Cylindropuntia fosbergii", "Opuntia sphaerica", "Coryphantha vivipara var. vivipara", "Coryphantha longicornis", "Cylindropuntia thurberi", "Opuntia megarhiza", "Peniocereus marianus", "Rebutia fiebrigii", "Machaerocereus eruca", "Mammillaria heyderi subsp. heyderi", "Rhipsalis oblonga", "Cylindropuntia leptocaulis x whipplei", "Opuntia keyensis", "x Pacherocactus orcuttii", "Mammillaria saboae var. haudeana", "Grusonia densispina", "Harrisia gracilis", "Consolea spinosissima", "Mammillaria pottsii", "Eriosyce senilis subsp. coimasensis", "Pereskiopsis blakeana", "Mammillaria tezontle", "Grusonia vilis", "Opuntia bisetosa", "Opuntia macracantha", "Echinocereus stramineus var. stramineus", "Cereus pringlei", "Cylindropuntia californica var. californica", "Austrocylindropuntia subulata", "Echinocereus fitchii", "Mammillaria melanocentra", "Eriosyce krausii", "Cylindropuntia californica subsp. californica", "Copiapoa malletiana", "Opuntia abyssi", "Eriosyce villosa", "Acanthocereus subinermis", "Thelocactus hexaedrophorus", "Copiapoa humilis", "Cylindropuntia X campii", "Echinopsis chamaecereus", "Eriosyce garaventae", "Pilosocereus arrabidae", "Cylindropuntia ganderi subsp. ganderi", "Cylindropuntia leptocaulis x versicolor", "Brasiliopuntia brasiliensis", "Cylindropuntia tetracantha", "Gymnocalycium saglionis subsp. tilcarense", "Coleocephalocereus fluminensis", "Lepismium cruciforme", "Thelocactus leucacanthus", "Echinomastus intertextus var. dasyacanthus", "Austrocactus spiniflorus", "Echinocereus reichenbachii subsp. caespitosus", "Cochemiea pondii", "mammillaria crinita subsp. crinita", "Opuntia cymochila", "Echinocereus fendleri subsp. rectispinus", "Rhipsalis pulchra", "Melocactus praerupticola", "Echinopsis strigosa", "Opuntia repens", "Eriosyce villicumensis", "Ferocactus townsendianus var. santa-maria", "Mammillaria peninsularis", "Eriosyce pygmaea", "Opuntia dillenii", "Echinocereus primolanatus", "Opuntia phaeacantha var. spinosibacca", "Mammillaria grahamii subsp. grahamii", "Echinocereus viereckii", "Opuntia columbiana", "Cylindropuntia acanthocarpa var. acanthocarpa", "Ferocactus robustus", "Opuntia cordobensis", "Eriosyce sociabilis", "Echinocereus conoideus", "Eriosyce bulbocalyx", "Melocactus harlowii", "Cylindropuntia abyssi", "Echinocereus coccineus var. rosei", "Pereskiopsis porteri", "Cleistocactus leonensis", "Cylindropuntia lindsayi", "Ariocarpus fissuratus var. fissuratus", "Opuntia x occidentalis", "Mammillaria winterae", "Opuntia basilaris var. basilaris", "Opuntia salmiana", "Opuntia littoralis var. vaseyi", "Echinomastus warnockii", "Copiapoa taltalensis", "Opuntia spinosibacca", "Opuntia strigil", "Ferocactus cylindraceus subsp. eastwoodiae", "Eriosyce napina subsp. lembckei", "Mammillaria estebanensis", "Mammillaria rettigiana", "Melocactus curvispinus subsp. caesius", "Mammillaria yaquensis", "Cylindropuntia x kelvinensis", "Leptocereus quadricostatus", "Opuntia atropes", "Oreocereus hempelianus", "Echinocereus bristolii", "Cleistocactus sextonianus", "Hylocereus undatus", "Mammillaria voburnensis subsp. eichlamii", "Echinocereus pacificus subsp. pacificus", "Stenocereus alamosensis", "Mammillaria elongata", "Ferocactus pilosus", "Lepismium houlletianum", "Opuntia basilaris var. brachyclada", "Mammillaria armillata", "Selenicereus grandiflorus", "Echinocereus engelmannii var. acicularis", "Cylindropuntia imbricata subsp. argentea", "Eriosyce taltalensis subsp. pilispina", "Mammillaria fittkaui", "Echinocactus polycephalus", "Cylindropuntia ganderi var. ganderi", "Mammillaria hutchisoniana", "Cumulopuntia boliviana subsp. boliviana", "Mammillaria dixanthocentron", "Echinocereus engelmannii var. munzii", "Rhipsalis neves-armondii", "Neomammillaria peninsularis", "Mammillaria wagneriana", "Mammillaria candida", "Melocactus nagyi", "Echinocereus palmeri", "Echinocereus pulchellus subsp. pulchellus", "Dendrocereus nudiflorus", "Cylindropuntia californica subsp. rosarica", "Mammillaria moelleriana", "Ferocactus santa-maria", "Opuntia sanfelipensis", "Opuntia pittieri", "Mammillaria saboae", "Cylindropuntia molesta subsp. clavellina", "Opuntia lindheimeri var. lindheimeri", "Mammillaria gigantea", "Escobaria vivipara", "Eulychnia castanea", "Nyctocereus serpentinus", "Sclerocactus havasupaiensis", "Acanthocalycium klimpelianum", "Hylocereus purpusii", "Thelocactus conothelos", "Opuntia lasiacantha", "Opuntia engelmannii var. cuija", "Escobaria zilziana", "Eriosyce curvispina var. mutabilis", "Mammillaria lewisiana", "Epiphyllum hookeri", "Parodia erubescens", "Pelecyphora aselliformis", "Opuntia quimilo", "Echinocereus bonkerae", "Mammillaria mercadensis", "Opuntia x vaseyi", "Cumulopuntia sphaerica", "Melocactus peruvianus", "Opuntia antillana", "Cleistocactus laniceps", "Eriosyce crispa subsp. atroviridis", "Opuntia jaliscana", "Neolloydia matehualensis", "Opuntia ellisiana", "Echinocereus mombergerianus", "Opuntia lagunae", "Opuntia streptacantha", "Echinocereus bacanorensis", "Disocactus speciosus", "Austrocylindropuntia cylindrica", "Mila nealeana", "Opuntia x curvospina", "Echinocereus viridiflorus subsp. cylindricus", "Ferocactus cylindraceus subsp. tortulispinus", "Cleistocactus sepium var. ventimigliae", "Mammillaria albilanata subsp. albilanata", "Mammillaria perezdelarosae", "Echinopsis pentlandii", "Opuntia cespitosa", "Mammillaria formosa", "Acanthocereus occidentalis", "Opuntia mesacantha subsp. lata", "Echinomastus intertextus var. intertextus", "Eriosyce crispa var. carrizalensis", "Eriosyce odieri subsp. glabrescens", "Opuntia lata", "Aztekium hintonii", "Cereus hildmannianus", "Eriosyce strausiana", "Cephalocereus purpusii", "Ferocactus alamosanus var. alamosanus", "Mammillaria blossfeldiana var. shurliana", "Cylindropuntia thurberi subsp. alamosensis", "Opuntia pumila", "Mammillaria glassii", "Dendrocereus undulosus", "Gymnocalycium hybopleurum", "Parodia horstii", "Mammillaria schumannii", "Mammillaria angelensis", "Neomammillaria milleri", "Echinocereus rigidissimus var. rigidissimus", "Harrisia fernowii", "Ferocactus uncinatus", "Corryocactus brevistylus subsp. puquiensis", "Eriosyce subgibbosa subsp. clavata", "Ariocarpus fissuratus subsp. lloydii", "Cylindropuntia X deserta", "Cumulopuntia tortispina", "Blossfeldia liliputana", "Opuntia huajuapensis", "Opuntia cardenche", "Echinocereus viridiflorus var. chloranthus", "Cylindropuntia x fosbergii", "Grusonia bulbispina", "Copiapoa cinerea subsp. cinerea", "Harrisia tortuosa", "Eriosyce curvispina", "Echinopsis mamillosa", "Maihueniopsis leoncito", "Corynopuntia vilis", "Cylindropuntia alcahes subsp. alcahes", "Eriosyce occulta", "Mammillaria sempervivi", "Tunilla soehrensii", "Cephalocereus apicicephalium", "Opuntia x spinosibacca", "Astrophytum myriostigma var. myriostigma", "Opuntia deamii", "Mammillaria coahuilensis", "Coryphantha glanduligera", "Tephrocactus weberi", "Eriosyce heinrichiana subsp. intermedia", "Opuntia engelmannii var. flavispina", "Corynopuntia bulbispina", "Mammillaria winterae subsp. winterae", "Mammillaria mazatlanensis", "Eriosyce odieri var. monte-amargensis", "Echinocereus pacificus subsp. mombergerianus", "Polaskia chende", "Ancistrocactus tobuschii", "Ferocactus viridescens var. viridescens", "Opuntia calmalliana", "Cleistocactus winteri", "Opuntia megasperma var. orientalis", "Ferocactus gracilis subsp. gatesii", "Mammillaria grusonii", "Opuntia feroacantha", "Escontria chiotilla", "Opuntia megasperma", "Opuntia brasiliensis", "Echinocereus enneacanthus", "Echinocereus scheeri subsp. scheeri", "Echinocereus viridiflorus subsp. viridiflorus", "Echinocereus schmollii", "Selenicereus spinulosus", "Echinomastus johnsonii var. johnsonii", "Cylindropuntia multigeniculata", "Pygmaeocereus familiaris", "Echinocereus santaritensis subsp. santaritensis", "Copiapoa cinerea", "Pterocactus gonjianii", "Rhipsalis clavata", "Opuntia pescorvae", "Echinocereus dubius", "Echinopsis oxygona", "Mammillaria brandegeei", "Mila caespitosa", "Opuntia pubescens", "Tephrocactus molinensis", "Echinocereus triglochidiatus var. gurneyi", "Opuntia phaeacantha var. major", "Opuntia hitchcockii", "Cleistocactus sepium var. sepium", "Lepismium lumbricoides", "Mammillaria polythele", "Opuntia setispina", "Mammillaria orcuttii", "Selenicereus donkelaarii", "Echinopsis ferox", "Stenocereus thurberi var. thurberi", "Eriosyce marksiana var. lissocarpa", "Echinopsis lageniformis", "Opuntia atrispina", "Echinocereus stolonifer subsp. tayopensis", "Micropuntia pulchella", "Epiphyllum anguliger", "Opuntia puberula", "Pachycereus pringlei", "Echinocereus reichenbachii subsp. armatus", "Opuntia dejecta", "Melocactus bellavistensis", "Opuntia intricata", "Corryocactus brevistylus", "Echinopsis lamprochlora", "Eriosyce islayensis", "Echinocereus scheeri subsp. gentryi", "Parodia werdermanniana", "Cochemiea poselgeri", "Opuntia x columbiana", "Corryocactus brachypetalus", "Harrisia tetracantha", "Opuntia macrorhiza var. pottsii", "Echinocereus scheeri var. obscuriensis", "Disocactus amazonicus", "Cochemiea maritima", "Echinopsis spachiana", "Gymnocalycium horstii", "Eriosyce chilensis var. albidiflora", "Rhipsalis occidentalis", "Copiapoa fiedleriana", "Gymnocactus beguinii", "Cylindropuntia californica subsp. delgadilloana", "Mammillaria weingartiana", "Echinopsis huascha", "Turbinicarpus pseudomacrochele subsp. pseudomacrochele", "Copiapoa humilis subsp. variispinata", "Mammillaria gaumeri", "Opuntia quitensis", "Thelocactus tulensis", "Echinofossulocactus dichroacanthus", "Mammillaria swinglei", "Leptocereus wrightii", "Ferocactus gracilis subsp. coloratus", "Eriosyce marksiana", "Grusonia grahamii", "Turbinicarpus schmiedickeanus subsp. schwarzii", "Maihueniopsis atacamensis", "Echinopsis pamparuizii", "Ancistrocactus brevihamatus", "Parodia tabularis", "Cylindropuntia acanthocarpa subsp. thornberi", "Mammillaria gasseriana", "Copiapoa rupestris subsp. desertorum", "Opuntia anteojoensis", "Echinocereus engelmannii", "Cylindropuntia rosea", "Opuntia turgida", "Ferocactus latispinus subsp. spiralis", "Pilosocereus pachycladus", "Cylindropuntia imbricata var. argentea", "Thelocactus setispinus", "Austrocylindropuntia miquelii", "Hatiora cylindrica", "Ferocactus gracilis subsp. gracilis", "Coryphantha jaumavei", "Eriosyce taltalensis subsp. paucicostata", "Cylindropuntia kelvinensis", "Pereskiopsis rotundifolia", "Cylindropuntia bigelovii subsp. ciribe", "Ferocactus johnstonianus", "Echinocereus leucanthus", "Mammillaria pennispinosa", "Opuntia wilcoxii", "Echinocereus fendleri var. rectispinus", "Opuntia emoryi", "Pachgerocereus orcuttii", "Echinocereus coccineus subsp. rosei", "Echinocereus sciurus subsp. floresii", "Echinocereus longisetus", "Mammillaria brandegeei subsp. lewisiana", "Opuntia grandis", "Cylindropuntia molesta subsp. molesta", "Echinocereus pulchellus", "Echinocereus pentalophus subsp. leonensis", "Opuntia sulphurea", "Cylindropuntia californica var. rosarica", "Ancistrocactus pinkavanus", "Echinopsis formosa", "Copiapoa calderana", "Opuntia polyacantha var. juniperina", "Opuntia impedata", "Mammillaria bocasana subsp. bocasana", "Tephrocactus alexanderi", "Eriosyce subgibbosa subsp. subgibbosa", "Mammillaria wildii", "Echinocereus enneacanthus var. enneacanthus", "Coryphantha poselgeriana", "Opuntia leucotricha", "Echinopsis thelegona", "Stenocactus obvallatus", "Cylindropuntia cardenche", "Mammillaria heyderi subsp. gummifera", "Opuntia bravoana", "Cereus stellatus", "Eriosyce napina subsp. napina", "Pygmaeocereus bylesianus", "Copiapoa echinoides", "Echinocereus coccineus subsp. coccineus", "Maihueniopsis conoidea", "Opuntia x charlestonensis" ];
 
+
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+              b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+      x[i].parentNode.removeChild(x[i]);
+    }
+  }
+}
+/*execute a function when someone clicks in the document:*/
+document.addEventListener("click", function (e) {
+    closeAllLists(e.target);
+});
+}
+
+// var input = document.getElementById("species");
+//
+// // Execute a function when the user releases a key on the keyboard
+// input.addEventListener("keyup", function(event) {
+//   // Number 13 is the "Enter" key on the keyboard
+//   if (event.keyCode === 13) {
+//     //   alert("enter pressed.")
+//     // Cancel the default action, if needed
+//     event.preventDefault();
+//     // Trigger the button element with a click
+//     document.getElementById("btn-submit").click();
+//   }
+// });
+
+autocomplete(document.getElementById("species"), species);
 
 </script>
 
