@@ -1,204 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Cactus Data Visualization</title>
-
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
-    <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
-
-    <!-- PLUGINS CSS STYLE -->
-    <link href="assets/plugins/toaster/toastr.min.css" rel="stylesheet" />
-    <link href="assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
-    <link href="assets/plugins/flag-icons/css/flag-icon.min.css" rel="stylesheet" />
-    <link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
-    <link href="assets/plugins/ladda/ladda.min.css" rel="stylesheet" />
-    <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-    <link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
-
-    <!-- SLEEK CSS -->
-    <link id="sleek-css" rel="stylesheet" href="assets/css/sleek.css" />
-
-
-    <!-- FAVICON -->
-    <link href="assets/img/favicon.png" rel="shortcut icon" />
-
-    <!--
-    HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
-  -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-    <script src="assets/plugins/nprogress/nprogress.js"></script>
-</head>
-
-
-<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
-    <script>
-        NProgress.configure({
-            showSpinner: false
-        });
-        NProgress.start();
-    </script>
-
-    <div class="mobile-sticky-body-overlay"></div>
-
-    <div class="wrapper">
-
-        <!--
-          ====================================
-          ——— LEFT SIDEBAR WITH FOOTER
-          =====================================
-        -->
-        <aside class="left-sidebar bg-sidebar">
-            <div id="sidebar" class="sidebar sidebar-with-footer">
-                <!-- Aplication Brand -->
-                <div class="app-brand">
-                    <a href="/index.html">
-                <svg
-                  class="brand-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="xMidYMid"
-                  width="30"
-                  height="33"
-                  viewBox="0 0 30 33"
-                >
-                  <g fill="none" fill-rule="evenodd">
-                    <path
-                      class="logo-fill-blue"
-                      fill="#7DBCFF"
-                      d="M0 4v25l8 4V0zM22 4v25l8 4V0z"
-                    />
-                    <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
-                  </g>
-                </svg>
-                <span class="brand-name">Cacti Data</span>
-              </a>
-                </div>
-                <!-- begin sidebar scrollbar -->
-                <div class="sidebar-scrollbar">
-
-                    <!-- sidebar menu -->
-                    <ul class="nav sidebar-inner" id="sidebar-menu">
-
-
-                        <li class="has-sub">
-                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
-                      aria-expanded="false" aria-controls="pages">
-                      <i class="mdi mdi-image-filter-none"></i>
-                      <span class="nav-text">Pages</span> <b class="caret"></b>
-                    </a>
-                            <ul class="collapse" id="pages" data-parent="#sidebar-menu">
-                                <div class="sub-menu">
-
-
-
-                                    <li>
-                                        <a class="sidenav-item-link" href="index.html">
-                                <span class="nav-text">Visualization</span>
-
-                              </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="sidenav-item-link" href="choropleth.html">
-                                <span class="nav-text">Choropleth</span>
-
-                              </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="sidenav-item-link" href="temperature.html">
-                                <span class="nav-text">Temperature Chart</span>
-
-                              </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="sidenav-item-link" href="zoompack.html">
-                                <span class="nav-text">Zoomable Pack</span>
-
-                              </a>
-                                    </li>
-
-                                    <li class="has-sub">
-                                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#authentication"
-                              aria-expanded="false" aria-controls="authentication">
-                              <span class="nav-text">Word Clouds</span> <b class="caret"></b>
-                            </a>
-                                        <ul class="collapse" id="authentication">
-                                            <div class="sub-menu">
-
-                                                <li>
-                                                    <a href="wordcloud-flower.html">Flower Producible</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="wordcloud-no-flower.html">Non Flower Producible</a>
-                                                </li>
-
-                                            </div>
-                                        </ul>
-                                    </li>
-
-
-
-                                </div>
-                            </ul>
-                        </li>
-
-
-
-                    </ul>
-
-                </div>
-
-            </div>
-        </aside>
-
-
-
-        <div class="page-wrapper">
-            <!-- Header -->
-            <header class="main-header " id="header">
-                <nav class="navbar navbar-static-top navbar-expand-lg">
-                    <!-- Sidebar toggle button -->
-                    <button id="sidebar-toggler" class="sidebar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                      </button>
-                    <!-- search form -->
-                    <div class="search-form d-none d-lg-inline-block">
-                        <h1>A Guide to Cacti in Americas</h1>
-                        <!-- <div class="input-group">
-                          <button type="button" name="search" id="search-btn" class="btn btn-flat">
-                            <i class="mdi mdi-magnify"></i>
-                          </button>
-                          <input type="text" name="query" id="search-input" class="form-control" placeholder="Species name"
-                            autofocus autocomplete="off" />
-                        </div> -->
-                        <div id="search-results-container">
-                            <ul id="search-results"></ul>
-                        </div>
-                    </div>
-
-                </nav>
-
-
-            </header>
-
-
-            <div class="content-wrapper">
-                <div class="content">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card card-default text-dark">
                                 <div class="card-header">
                                     <h2>Overview of Features</h2>
                                 </div>
@@ -212,10 +12,7 @@
                                     </ul>
 
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="card card-default text-dark">
+
                                 <div class="card-header">
                                     <h2>Data Collection and Processing</h2>
                                 </div>
@@ -231,10 +28,7 @@
                                     </ul>
                                     <!-- </blockquote> -->
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="card card-default text-dark">
+
                                 <div class="card-header">
                                     <h2>Classification based on flower reproducibility( Location wise)</h2>
                                 </div>
@@ -249,11 +43,7 @@
 
 
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="col-lg-12">
-                            <div class="card card-default text-dark">
                                 <div class="card-header">
                                     <h2>Choropleth</h2>
                                 </div>
@@ -266,11 +56,7 @@
                                     </ul>
 
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="col-lg-12">
-                            <div class="card card-default text-dark">
                                 <div class="card-header">
                                     <h2>Living Temperature</h2>
                                 </div>
@@ -291,11 +77,7 @@
 
 
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="col-lg-12">
-                            <div class="card card-default text-dark">
                                 <div class="card-header">
                                     <h2>Family Packing</h2>
                                 </div>
@@ -307,12 +89,7 @@
                                     </ul>
 
                                 </div>
-                            </div>
-                        </div>
 
-
-                        <div class="col-lg-12">
-                            <div class="card card-default text-dark">
                                 <div class="card-header">
                                     <h2>Word Cloud</h2>
                                 </div>
@@ -324,11 +101,7 @@
 
 
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="col-lg-12">
-                            <div class="card card-default text-dark">
                                 <div class="card-header">
                                     <h2>Source Code on Github</h2>
                                 </div>
@@ -340,11 +113,7 @@
                                     </ul>
 
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="col-lg-12">
-                            <div class="card card-default text-dark">
                                 <div class="card-header">
                                     <h2>Instruction for Deploying the Website</h2>
                                 </div>
@@ -363,11 +132,7 @@
 
 
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="col-lg-12">
-                            <div class="card card-default text-dark">
                                 <div class="card-header">
                                     <h2>References</h2>
                                 </div>
@@ -391,59 +156,9 @@
 
 
                                 </div>
-                            </div>
-                        </div>
-
-                    </div>
 
 
-
-
-                </div>
-
-            </div>
-
-
-
-
-        </div>
-
-        <footer class="footer mt-auto">
             <div class="copyright bg-white">
                 <p>Project done for Dr. Sharon Hsiao's Class (CSE 578), Arizona State University
                 </p>
             </div>
-
-        </footer>
-
-    </div>
-    </div>
-
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/plugins/toaster/toastr.min.js"></script>
-    <script src="assets/plugins/slimscrollbar/jquery.slimscroll.min.js"></script>
-    <script src="assets/plugins/charts/Chart.min.js"></script>
-    <script src="assets/plugins/ladda/spin.min.js"></script>
-    <script src="assets/plugins/ladda/ladda.min.js"></script>
-    <script src="assets/plugins/jquery-mask-input/jquery.mask.min.js"></script>
-    <script src="assets/plugins/select2/js/select2.min.js"></script>
-    <script src="assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-    <script src="assets/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
-    <script src="assets/plugins/daterangepicker/moment.min.js"></script>
-    <script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
-    <script src="assets/plugins/jekyll-search.min.js"></script>
-    <script src="assets/js/sleek.js"></script>
-    <script src="assets/js/chart.js"></script>
-    <script src="assets/js/date-range.js"></script>
-    <script src="assets/js/map.js"></script>
-    <script src="assets/js/custom.js"></script>
-
-
-
-
-</body>
-
-</html>
