@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cactus Data Visualization</title>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
+    <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
+
+    <!-- PLUGINS CSS STYLE -->
+    <link href="assets/plugins/toaster/toastr.min.css" rel="stylesheet" />
+    <link href="assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
+    <link href="assets/plugins/flag-icons/css/flag-icon.min.css" rel="stylesheet" />
+    <link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+    <link href="assets/plugins/ladda/ladda.min.css" rel="stylesheet" />
+    <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+    <!-- SLEEK CSS -->
+    <link id="sleek-css" rel="stylesheet" href="assets/css/sleek.css" />
+
+
+    <!-- FAVICON -->
+    <link href="assets/img/favicon.png" rel="shortcut icon" />
+
+    <!--
+    HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+  -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+    <script src="assets/plugins/nprogress/nprogress.js"></script>
+</head>
+
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+    <script>
+        NProgress.configure({
+            showSpinner: false
+        });
+        NProgress.start();
+    </script>
+
+    <div class="mobile-sticky-body-overlay"></div>
+
+    <div class="wrapper">
+
+        <!--
+          ====================================
+          ——— LEFT SIDEBAR WITH FOOTER
+          =====================================
+        -->
+        <aside class="left-sidebar bg-sidebar">
+            <div id="sidebar" class="sidebar sidebar-with-footer">
+                <!-- Aplication Brand -->
+                <div class="app-brand">
+                    <a href="/index.html">
+                <svg
+                  class="brand-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="xMidYMid"
+                  width="30"
+                  height="33"
+                  viewBox="0 0 30 33"
+                >
+                  <g fill="none" fill-rule="evenodd">
+                    <path
+                      class="logo-fill-blue"
+                      fill="#7DBCFF"
+                      d="M0 4v25l8 4V0zM22 4v25l8 4V0z"
+                    />
+                    <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
+                  </g>
+                </svg>
+                <span class="brand-name">Cacti Data</span>
+              </a>
+                </div>
+                <!-- begin sidebar scrollbar -->
+                <div class="sidebar-scrollbar">
+
+                    <!-- sidebar menu -->
+                    <ul class="nav sidebar-inner" id="sidebar-menu">
+
+
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
+                      aria-expanded="false" aria-controls="pages">
+                      <i class="mdi mdi-image-filter-none"></i>
+                      <span class="nav-text">Pages</span> <b class="caret"></b>
+                    </a>
+                            <ul class="collapse" id="pages" data-parent="#sidebar-menu">
+                                <div class="sub-menu">
+
+
+
+                                    <li>
+                                        <a class="sidenav-item-link" href="index.html">
+                                <span class="nav-text">Visualization</span>
+
+                              </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="sidenav-item-link" href="choropleth.html">
+                                <span class="nav-text">Choropleth</span>
+
+                              </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="sidenav-item-link" href="temperature.html">
+                                <span class="nav-text">Temperature Chart</span>
+
+                              </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="sidenav-item-link" href="zoompack.html">
+                                <span class="nav-text">Zoomable Pack</span>
+
+                              </a>
+                                    </li>
+
+                                    <li class="has-sub">
+                                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#authentication"
+                              aria-expanded="false" aria-controls="authentication">
+                              <span class="nav-text">Word Clouds</span> <b class="caret"></b>
+                            </a>
+                                        <ul class="collapse" id="authentication">
+                                            <div class="sub-menu">
+
+                                                <li>
+                                                    <a href="wordcloud-flower.html">Flower Producible</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="wordcloud-no-flower.html">Non Flower Producible</a>
+                                                </li>
+
+                                            </div>
+                                        </ul>
+                                    </li>
+
+
+
+                                </div>
+                            </ul>
+                        </li>
+
+
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </aside>
+
+
+
+        <div class="page-wrapper">
+            <!-- Header -->
+            <header class="main-header " id="header">
+                <nav class="navbar navbar-static-top navbar-expand-lg">
+                    <!-- Sidebar toggle button -->
+                    <button id="sidebar-toggler" class="sidebar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                      </button>
+                    <!-- search form -->
+                    <div class="search-form d-none d-lg-inline-block">
+                        <h1>A Guide to Cacti in Americas</h1>
+                        <!-- <div class="input-group">
+                          <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="mdi mdi-magnify"></i>
+                          </button>
+                          <input type="text" name="query" id="search-input" class="form-control" placeholder="Species name"
+                            autofocus autocomplete="off" />
+                        </div> -->
+                        <div id="search-results-container">
+                            <ul id="search-results"></ul>
+                        </div>
+                    </div>
+
+                </nav>
+
+
+            </header>
+
+
+            <div class="content-wrapper">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card card-default text-dark">
+                                <div class="card-header">
+                                    <h2>Overview of Features</h2>
+                                </div>
+                                <div class="card-body pt-4">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Classification based on flower reproducibility( Location wise) (<a href="index.html">Classification</a>)</li>
+                                        <li class="list-group-item">Loc-wise heat map(Chloropleth) - (<a href="choropleth.html">Heat Map</a>)</li>
+                                        <li class="list-group-item">Living Temperature (<a href="temperature.html">here</a>)</li>
+                                        <li class="list-group-item">Family Packing of Species (<a href="zoompack.html">Zoomable packing</a>)</li>
+                                        <li class="list-group-item">Word cloud based on Reproducibility and Occurrence (<a href="wordcloud-flower.html">Flowering</a>, <a href="wordcloud-no-flower.html">Non Flowering</a>)</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card card-default text-dark">
+                                <div class="card-header">
+                                    <h2>Data Collection and Processing</h2>
+                                </div>
+                                <div class="card-body pt-4">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">SEINet webpage was scraped using python code to get images and description</li>
+                                        <li class="list-group-item">We also collected locations (lattitude, longitude) for each species. Location for some species are missing (collected using Google Maps)</li>
+                                        <li class="list-group-item">For the Living Temperatures of the cacti, there were almost no data in the SEINet website. We needed to collect data missing using location (if a cactus grows in AZ, we took the
+                                            temperature range for AZ)
+                                        </li>
+                                        <li class="list-group-item">We used image classification-filter and rotation and flipping to enhance the data</li>
+                                        <li class="list-group-item">We calculated the population based on lat and long as the data is not available with state data</li>
+                                    </ul>
+                                    <!-- </blockquote> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card card-default text-dark">
+                                <div class="card-header">
+                                    <h2>Classification based on flower reproducibility( Location wise)</h2>
+                                </div>
+                                <div class="card-body pt-4">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Two distinct classes (1) Flower Reproducibility and (2) without Flower Reproducibility</li>
+                                        <li class="list-group-item">Images are classified by a DNN</li>
+                                        <li class="list-group-item">Classification Result displayed by clicking on the point</li>
+                                        <li class="list-group-item">Location Points based on the Latitude and Longitude, Description and Image on hovering the points</li>
+                                        <li class="list-group-item">Search by Auto complete</li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="card card-default text-dark">
+                                <div class="card-header">
+                                    <h2>Choropleth</h2>
+                                </div>
+                                <div class="card-body pt-4">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Sequential color used to indicate the cacti population in various states of the countries</li>
+                                        <li class="list-group-item">Sequential is used because it is easier to identify the strength of the population</li>
+                                        <li class="list-group-item">Our state has the highest population</li>
+                                        <li class="list-group-item">Surprisingly East coast states like NY have some cacti too</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="card card-default text-dark">
+                                <div class="card-header">
+                                    <h2>Living Temperature</h2>
+                                </div>
+                                <div class="card-body pt-4">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">We have divided the cacti into three types
+                                            <ol>
+                                                <li class="list-group-item">The pot-able cacti i.e which can be grown in the pots</li>
+                                                <li class="list-group-item">The creeper cacti, which really grows on groups</li>
+                                                <li class="list-group-item">The tall ones which are above 5ft
+                                                <li class="list-group-item">
+                                            </ol>
+                                        </li>
+                                        <li class="list-group-item">The classification is done manually by studying the species</li>
+                                        <li class="list-group-item">The upper region is the high extreme temp the cacti can survive</li>
+                                        <li class="list-group-item">And the lowers are low extremities</li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="card card-default text-dark">
+                                <div class="card-header">
+                                    <h2>Family Packing</h2>
+                                </div>
+                                <div class="card-body pt-4">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Each cacti belongs to family and each family has many cacti in it</li>
+                                        <li class="list-group-item">To represent the family of the cacti we used zoomable circle packing</li>
+                                        <li class="list-group-item">This helps us to know the cacti and their 'brothers' and 'sisters' better</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-12">
+                            <div class="card card-default text-dark">
+                                <div class="card-header">
+                                    <h2>Word Cloud</h2>
+                                </div>
+                                <div class="card-body pt-4">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Two fun and interactive word clouds, one for each class (flower producing and non producing)</li>
+                                        <li class="list-group-item">The size of text is based on the population of the family</li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="card card-default text-dark">
+                                <div class="card-header">
+                                    <h2>Source Code on Github</h2>
+                                </div>
+                                <div class="card-body pt-4">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <a href="https://github.com/tnasim/cse578_data_viz_cactus">https://github.com/tnasim/cse578_data_viz_cactus</a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="card card-default text-dark">
+                                <div class="card-header">
+                                    <h2>Instruction for Deploying the Website</h2>
+                                </div>
+                                <div class="card-body pt-4">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Prerequisite: need python installed in your machine.</li>
+                                        <li class="list-group-item">Clone or download the above mentioned github project.</li>
+                                        <li class="list-group-item">From the root folder of the project, run the following command:</li>
+                                        <li class="list-group-item">
+                                            <code>
+        python -m http.server 8000 --bind 127.0.0.1
+    </code>
+                                        </li>
+                                        <li class="list-group-item">You can access it from theweb browser at: <a href="localhost:8000">localhost:8000</a></li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="card card-default text-dark">
+                                <div class="card-header">
+                                    <h2>References</h2>
+                                </div>
+                                <div class="card-body pt-4">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <b><a href="http://swbiodiversity.org/seinet/imagelib/index.php?taxon=Cactaceae">SEINet Website</a>:</b> We have collected all our cactus related data from this website. In order to collect specific details
+                                            of each of the cactus, we scraped this website using python other programming techniques.
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b><a href="https://www.naturalearthdata.com/">Natural Earth - Datasets (for Geo Data)</a>:</b> We downloaded the "Admin 1 States and Provinces" dataset in 'Shape' format and converted that into 'GeoJSON'
+                                            format using QGIS software. Then we pruned that dataset to get the dataset which finally contains only information for the countries in North/Central/South - America.
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b><a href="https://d3js.org/">D3</a></b> was used for different types of interactive visualization in this project.
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b><a href="https://leafletjs.com/">Leaflet JS</a></b> Was used to draw the choropleth map.
+                                        </li>
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+        <footer class="footer mt-auto">
+            <div class="copyright bg-white">
+                <p>Project done for Dr. Sharon Hsiao's Class (CSE 578), Arizona State University
+                </p>
+            </div>
+
+        </footer>
+
+    </div>
+    </div>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/plugins/toaster/toastr.min.js"></script>
+    <script src="assets/plugins/slimscrollbar/jquery.slimscroll.min.js"></script>
+    <script src="assets/plugins/charts/Chart.min.js"></script>
+    <script src="assets/plugins/ladda/spin.min.js"></script>
+    <script src="assets/plugins/ladda/ladda.min.js"></script>
+    <script src="assets/plugins/jquery-mask-input/jquery.mask.min.js"></script>
+    <script src="assets/plugins/select2/js/select2.min.js"></script>
+    <script src="assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="assets/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
+    <script src="assets/plugins/daterangepicker/moment.min.js"></script>
+    <script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/jekyll-search.min.js"></script>
+    <script src="assets/js/sleek.js"></script>
+    <script src="assets/js/chart.js"></script>
+    <script src="assets/js/date-range.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+
+
+
+</body>
+
+</html>
