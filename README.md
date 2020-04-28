@@ -1,3 +1,5 @@
+# Cactus Data Visualization
+This project applies some common Data Visualization techniques based on Cactus data found on [SEINet Website](http://swbiodiversity.org/seinet/imagelib/index.php?taxon=Cactaceae)
 
 ## Overview of Features
 
@@ -65,4 +67,5 @@
 *   **[Leaflet JS](https://leafletjs.com/)** Was used to draw the choropleth map.
 
 
-### _Project done for Dr. Sharon Hsiao's Class (CSE 578), Arizona State University_
+## Class Project
+This was a class project done for the class [CSE 578 Data Visualization - Spring 2020](https://sites.google.com/a/asu.edu/cse578_datavisualization-spring-2020/) by [Dr. Sharon Hsiao](http://www.public.asu.edu/~ihsiao1/)
