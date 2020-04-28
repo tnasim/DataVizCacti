@@ -232,6 +232,13 @@ input[type=submit] {
                           </li>
 
                           <li >
+                            <a class="sidenav-item-link" href="temperature.html">
+                              <span class="nav-text">Temperature Chart</span>
+
+                            </a>
+                          </li>
+
+                          <li >
                             <a class="sidenav-item-link" href="zoompack.html">
                               <span class="nav-text">Zoomable Pack</span>
 
@@ -239,10 +246,30 @@ input[type=submit] {
                           </li>
 
                           <li >
-                            <a class="sidenav-item-link" href="temperature.html">
-                              <span class="nav-text">Temperature Chart</span>
+                            <a class="sidenav-item-link" href="wordcloud.html">
+                              <span class="nav-text">Word Clouds</span>
 
                             </a>
+                          </li>
+
+                          <li  class="has-sub" >
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#authentication"
+                              aria-expanded="false" aria-controls="authentication">
+                              <span class="nav-text">Word Clouds</span> <b class="caret"></b>
+                            </a>
+                            <ul  class="collapse"  id="authentication">
+                              <div class="sub-menu">
+
+                                <li >
+                                  <a href="wordcloud-flower.html">Flower Producible</a>
+                                </li>
+
+                                <li >
+                                  <a href="wordcloud-no-flower.html">Non Flower Producible</a>
+                                </li>
+
+                              </div>
+                            </ul>
                           </li>
 
                             <li >
@@ -277,7 +304,7 @@ input[type=submit] {
               </button>
               <!-- search form -->
               <div class="search-form d-none d-lg-inline-block">
-                  <h1>A Guide to the World of Cacti</h1>
+                  <h1>A Guide to Cacti in Americas</h1>
               </div>
 
             </nav>
@@ -461,13 +488,13 @@ datt=d3.csv("test.csv", function(data) {
                 // Get data value
                 var value = d.properties.visited;
 
-                if (value) {
-                    //If value exists…
-                    return color(value);
-                } else {
+                // if (value) {
+                //     //If value exists…
+                //     return color(value);
+                // } else {
                     //If value is undefined…
-                    return"rgb(69,173,168)";
-                }
+                    return"rgb(211,211,211)";
+                // }
             });
 
         // Map the cities I have lived in!
@@ -513,7 +540,7 @@ datt=d3.csv("test.csv", function(data) {
                         alert("This is Flower");
                     }
                     else{
-                        alert("This is cactus");
+                        alert("This is flower reproducible");
                     }
 
                 })
