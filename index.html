@@ -1,399 +1,609 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<script src="https://d3js.org/d3.v3.min.js"></script>
-<style type="text/css">
-@media screen and (min-width: 500px) and (min-width: 500px){
-   body {
-      width:1200px;
-      height: 800px;
-      font: 11px sans-serif;
-   }
-}
+<html lang="en" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-.heading{
-    position:absolute;
-    left:450px;
-    font: 40px sans-serif;
-    color:rgb(143, 111, 22);
-}
-/* On mouse hover, lighten state color */
-path:hover {
-    fill-opacity: .7;
-}
+  <title>Cactus Data Visualization</title>
 
-/* Style for Custom Tooltip */
-div.tooltip {
- 	position: absolute;
-	text-align: center;
-	width: auto;
-	height: auto;
-	padding: 4px;
-	font: 18px sans-serif;
-	background: white;
-	border: 0px;
-	border-radius: 8px;
-	pointer-events: none;
-}
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet"/>
+  <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
 
-/* Legend Font Style */
+  <!-- PLUGINS CSS STYLE -->
+  <link href="assets/plugins/toaster/toastr.min.css" rel="stylesheet" />
+  <link href="assets/plugins/flag-icons/css/flag-icon.min.css" rel="stylesheet"/>
+  <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+
+  <!-- SLEEK CSS -->
+  <link id="sleek-css" rel="stylesheet" href="assets/css/sleek.css" />
 
 
-/* Legend Position Style */
-.legend {
-    position:absolute;
-    left:800px;
-    top:350px;
-}
-.textentry {
-    position  :absolute;
-    top:       500px;  /* I usually locate relative to top  */
-    left:      1200px; /* left corner of container (screen) */
-    height:    20px;
-    width: 300px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font: 16px sans-serif;
-        /*  often useful to keep screen orderly */
+
+  <!-- FAVICON -->
+  <link href="assets/img/favicon.png" rel="shortcut icon" />
+
+  <!--
+    HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+  -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3.geo.projection.v0.min.js"></script>
+  <script src="https://d3js.org/topojson.v1.min.js"></script>
+
+  <style type="text/css">
+  /*@media screen and (min-width: 500px) and (min-width: 500px){
+     body {
+        width:1200px;
+        height: 800px;
+        font: 11px sans-serif;
+     }
+  }*/
+
+  .heading{
+      position:absolute;
+      left:450px;
+      font: 40px sans-serif;
+      color:rgb(143, 111, 22);
   }
-  .speciesentry {
-    position  :absolute;
-    top:       480px;  /* I usually locate relative to top  */
-    left:      1200px; /* left corner of container (screen) */
-    height:    8px;  /*  often useful to keep screen orderly */
-    font: 18px sans-serif;
-    font-weight: bold;
-  }
-  .notify {
-    position  :absolute;
-    top:       530px;  /* I usually locate relative to top  */
-    left:      1200px; /* left corner of container (screen) */
-    height:    8px;  /*  often useful to keep screen orderly */
-    font: 16px sans-serif;
-    font-weight: bolder;
-  }
+  /* On mouse hover, lighten state color */
+  path:hover {
+      fill-opacity: .7;
   }
 
-</style>
+  /* Style for Custom Tooltip */
+  div.tooltip {
+   	position: absolute;
+  	text-align: center;
+  	width: auto;
+  	height: auto;
+  	padding: 4px;
+  	font: 18px sans-serif;
+  	background: white;
+  	border: 0px;
+  	border-radius: 8px;
+  	pointer-events: none;
+  }
+
+  /* Legend Font Style */
+
+
+  /* Legend Position Style */
+  .legend {
+      position:absolute;
+      left:800px;
+      top:350px;
+  }
+  .textentry {
+      position  :absolute;
+      top:       500px;  /* I usually locate relative to top  */
+      left:      1200px; /* left corner of container (screen) */
+      height:    20px;
+      width: 300px;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font: 16px sans-serif;
+          /*  often useful to keep screen orderly */
+    }
+    .speciesentry {
+      position  :absolute;
+      top:       480px;  /* I usually locate relative to top  */
+      left:      1200px; /* left corner of container (screen) */
+      height:    8px;  /*  often useful to keep screen orderly */
+      font: 18px sans-serif;
+      font-weight: bold;
+    }
+    .notify {
+      position  :absolute;
+      top:       530px;  /* I usually locate relative to top  */
+      left:      1200px; /* left corner of container (screen) */
+      height:    8px;  /*  often useful to keep screen orderly */
+      font: 16px sans-serif;
+      font-weight: bolder;
+    }
+    }
+
+  </style>
 </head>
 
-<body>
-    <h2 class="heading">Location-Wise Visualization of Cactus</h2>
 
-    <label for="species" class="speciesentry">Search Species: </label>
-    <input  type="text" id="species" class="textentry" onchange="markLocationOnMap(this.value);marklocationrext(this.value)" value="Please Enter the Species Name";/>
-    <p id='not' class="notify"></p>
-    <h3><a href="choropleth.html">Cactus Population Based Choropleth</a></h3>
-    <script type="text/javascript">
+  <body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
 
-    /*  This visualization was made possible by modifying code provided by:
+    <div class="mobile-sticky-body-overlay"></div>
 
-    Scott Murray, Choropleth example from "Interactive Data Visualization for the Web"
-    https://github.com/alignedleft/d3-book/blob/master/chapter_12/05_choropleth.html
+    <div class="wrapper">
 
-    Malcolm Maclean, tooltips example tutorial
-    http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
+              <!--
+          ====================================
+          ——— LEFT SIDEBAR WITH FOOTER
+          =====================================
+        -->
+        <aside class="left-sidebar bg-sidebar">
+          <div id="sidebar" class="sidebar sidebar-with-footer">
+            <!-- Aplication Brand -->
+            <div class="app-brand">
+              <a href="/index.html">
+                <svg
+                  class="brand-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="xMidYMid"
+                  width="30"
+                  height="33"
+                  viewBox="0 0 30 33"
+                >
+                  <g fill="none" fill-rule="evenodd">
+                    <path
+                      class="logo-fill-blue"
+                      fill="#7DBCFF"
+                      d="M0 4v25l8 4V0zM22 4v25l8 4V0z"
+                    />
+                    <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
+                  </g>
+                </svg>
+                <span class="brand-name">Cacti Data</span>
+              </a>
+            </div>
+            <!-- begin sidebar scrollbar -->
+            <div class="sidebar-scrollbar">
 
-    Mike Bostock, Pie Chart Legend
-    http://bl.ocks.org/mbostock/3888852  */
+              <!-- sidebar menu -->
+              <ul class="nav sidebar-inner" id="sidebar-menu">
+
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
+                      aria-expanded="false" aria-controls="pages">
+                      <i class="mdi mdi-image-filter-none"></i>
+                      <span class="nav-text">Pages</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="pages"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
 
 
-    //Width and height of map
-    var width = 1420;
-    var height = 800;
+                          <li >
+                            <a class="sidenav-item-link" href="choropleth.html">
+                              <span class="nav-text">Choropleth</span>
 
-    // D3 Projection
-    var projection = d3.geo.albers()
-        .translate([width / 2, height / 2]) // translate to center of screen
-        .scale([400]); // scale things down so see entire US
+                            </a>
+                          </li>
 
-    // Define path generator
-    var path = d3.geo.path() // path generator that will convert GeoJSON to SVG paths
-        .projection(projection); // tell path generator to use albersUsa projection
+                            <li >
+                              <a class="sidenav-item-link" href="documentation.html">
+                                <span class="nav-text">Documentation</span>
+
+                              </a>
+                            </li>
+
+                      </div>
+                    </ul>
+                  </li>
 
 
-    // Define linear scale for output
-    var color = d3.scale.linear()
-        .range(["rgb(213,222,217)", "rgb(69,173,168)", "rgb(84,36,55)", "rgb(217,91,67)"]);
 
-    var legendText = ["Cities Lived", "States Lived", "States Visited", "Nada"];
+              </ul>
 
-    //Create SVG element and append map to the SVG
-    var svg = d3.select("body")
-        .append("svg")
-        .attr("width", width)
-        .attr("height", height);
+            </div>
 
-    // Append Div for tooltip to SVG
-    var div = d3.select("body")
-        .append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
-    var datt={}
-    // Load in my states data!
-    datt=d3.csv("test.csv", function(data) {
-        color.domain([0, 1, 2, 3]); // setting the range of the input data
+          </div>
+        </aside>
 
-        // Load GeoJSON data and merge with states data
-        // d3.json("us-states.json", function(json) {
-        d3.json("americas.json", function(json) {
 
-            // Loop through each state data value in the .csv file
-            for (var i = 0; i < data.length; i++) {
 
-                // Grab State Name
-                var dataState = data[i].state;
+      <div class="page-wrapper">
+                  <!-- Header -->
+          <header class="main-header " id="header">
+            <nav class="navbar navbar-static-top navbar-expand-lg">
+              <!-- Sidebar toggle button -->
+              <button id="sidebar-toggler" class="sidebar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <!-- search form -->
+              <div class="search-form d-none d-lg-inline-block">
+                  <h1>All About Cacti in the Americas</h1>
+              </div>
 
-                // Grab data value
-                var dataValue = data[i].visited;
+            </nav>
 
-                // Find the corresponding state inside the GeoJSON
-                for (var j = 0; j < json.features.length; j++) {
-                    var jsonState = json.features[j].properties.name;
 
-                    if (dataState == jsonState) {
+          </header>
 
-                        // Copy the data value into the JSON
-                        json.features[j].properties.visited = dataValue;
 
-                        // Stop looking through the JSON
-                        break;
-                    }
+        <div class="content-wrapper">
+          <div class="content">
+
+              <div class="row">
+                  <div class="col-md-12">
+
+
+                            <!-- World Chart -->
+
+                            <div class="card card-default" id="analytics-country">
+                              <div class="card-header justify-content-between">
+                                <h2>Cactus Distribution in the Americas</h2>
+
+
+                                <div class="search-form d-none d-lg-inline-block">
+                                  <div class="input-group">
+                                    <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                                      <i class="mdi mdi-magnify"></i>
+                                    </button>
+                                    <input type="text" id="species" onchange="markLocationOnMap(this.value);marklocationrext(this.value)" class="form-control" placeholder="Species name"
+                                      autofocus autocomplete="off" />
+                                  </div>
+
+                                  <!-- TODO: Implement Autocomplete search from:
+                                  https://www.w3schools.com/howto/howto_js_autocomplete.asp -->
+
+                                  <div id="search-results-container">
+                                    <ul id="search-results"></ul>
+                                  </div>
+                                </div>
+
+
+                              </div>
+                              <!-- <div class="card-body vector-map-world-2"> -->
+                              <div class="card-body">
+                                <div id="cacti-dist" style="height: 100%; width: 100%;"></div>
+                              </div>
+
+                            </div>
+
+  				</div>
+              </div>
+
+          </div>
+
+
+
+
+        </div>
+
+                  <footer class="footer mt-auto">
+            <div class="copyright bg-white">
+              <p>Project done for Dr. Sharon Hsiao's Class (CSE 578), Arizona State University
+              </p>
+            </div>
+          </footer>
+
+      </div>
+    </div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
+<script src="assets/plugins/jquery/jquery.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/plugins/toaster/toastr.min.js"></script>
+<script src="assets/plugins/slimscrollbar/jquery.slimscroll.min.js"></script>
+<script src="assets/plugins/ladda/spin.min.js"></script>
+<script src="assets/plugins/jquery-mask-input/jquery.mask.min.js"></script>
+<script src="assets/plugins/select2/js/select2.min.js"></script>
+<script src="assets/plugins/daterangepicker/moment.min.js"></script>
+<script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="assets/js/sleek.js"></script>
+<script src="assets/js/custom.js"></script>
+
+
+
+<script type="text/javascript">
+
+/*  This visualization was made possible by modifying code provided by:
+
+Scott Murray, Choropleth example from "Interactive Data Visualization for the Web"
+https://github.com/alignedleft/d3-book/blob/master/chapter_12/05_choropleth.html
+
+Malcolm Maclean, tooltips example tutorial
+http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
+
+Mike Bostock, Pie Chart Legend
+http://bl.ocks.org/mbostock/3888852  */
+
+
+//Width and height of map
+var width = 1420;
+var height = 800;
+
+// D3 Projection
+var projection = d3.geo.albers().parallels([20, 50])
+// var projection = d3.geo.equirectangular()
+    // .translate([width / 2, height / 2]) // translate to center of screen
+    .translate([width / 6, height / 6]) // translate to center of screen
+    .scale([500]); // scale things down so see entire US
+
+// Define path generator
+var path = d3.geo.path() // path generator that will convert GeoJSON to SVG paths
+    .projection(projection); // tell path generator to use albersUsa projection
+
+
+// Define linear scale for output
+var color = d3.scale.linear()
+    .range(["rgb(213,222,217)", "rgb(69,173,168)", "rgb(84,36,55)", "rgb(217,91,67)"]);
+
+var legendText = ["Cities Lived", "States Lived", "States Visited", "Nada"];
+
+//Create SVG element and append map to the SVG
+var svg = d3.select("#cacti-dist")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+// Append Div for tooltip to SVG
+var div = d3.select("#cacti-dist")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 1);
+var datt={}
+// Load in my states data!
+datt=d3.csv("test.csv", function(data) {
+    color.domain([0, 1, 2, 3]); // setting the range of the input data
+
+    // Load GeoJSON data and merge with states data
+    // d3.json("us-states.json", function(json) {
+    d3.json("americas.json", function(json) {
+
+        // Loop through each state data value in the .csv file
+        for (var i = 0; i < data.length; i++) {
+
+            // Grab State Name
+            var dataState = data[i].state;
+
+            // Grab data value
+            var dataValue = data[i].visited;
+
+            // Find the corresponding state inside the GeoJSON
+            for (var j = 0; j < json.features.length; j++) {
+                var jsonState = json.features[j].properties.name;
+
+                if (dataState == jsonState) {
+
+                    // Copy the data value into the JSON
+                    json.features[j].properties.visited = dataValue;
+
+                    // Stop looking through the JSON
+                    break;
                 }
             }
-
-            // Bind the data to the SVG and create one path per GeoJSON feature
-            svg.selectAll("path")
-                .data(json.features)
-                .enter()
-                .append("path")
-                .attr("d", path)
-                .style("stroke", "#fff")
-                .style("stroke-width", "1")
-                .style("fill", function(d) {
-
-                    // Get data value
-                    var value = d.properties.visited;
-
-                    if (value) {
-                        //If value exists…
-                        return color(value);
-                    } else {
-                        //If value is undefined…
-                        return "rgb(213,222,217)";
-                    }
-                });
-
-            // Map the cities I have lived in!
-            datt=d3.csv("dataset.csv", function(data) {
-
-
-                for (i = 0; i < data.length; i++) {
-                    //console.log(data[i]);
-                    datt[data[i].Species.replace(/ /g, "_").toLowerCase()]=data[i].Description;
-                    }
-                svg.selectAll("circles")
-                    .data(data)
-
-                    .enter()
-                    .append("image")
-                    .filter(function(d){ return d.TRUE ==1; })
-                    .attr("id", function(d) {
-                        return d.Species.replace(/ /g, "_").toLowerCase();})
-                    .attr('xlink:href', 'cactusflower.png')
-                    .attr("x", function(d) {
-                        // try {
-                            return projection([d.lon, d.lat])[0]-20;
-                        // } catch(e) {
-                        //     return 0;
-                        // }
-                    })
-                    .attr("y", function(d) {
-                        // try {
-                            return projection([d.lon, d.lat])[1]-20;
-                        // } catch(e) {
-                        //     return 0;
-                        // }
-                    })
-
-                    .attr('width', 40)
-                    .attr('height', 40)
-
-
-                    // Modification of custom tooltip code provided by Malcolm Maclean, "D3 Tips and Tricks"
-                    // http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
-                    .on("click",function(d){
-                    	if (d.Predict==0){
-                    		alert("This is Flower");
-                    	}
-                    	else{
-                    		alert("This is cactus");
-                    	}
-
-                    })
-
-                    .on("mouseover", function(d) {
-
-
-                        div.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        div.text("Location: " + d.place)
-
-                            .style("left", (d3.event.pageX) + "px")
-                            .style("top", (d3.event.pageY - 28) + "px");
-                        div.html("<p>Species: " + d.Species + "</p><p>Location: " + d.place + "</p></h1><ahref='http://en.wikipedia.org/wiki/Tombouctou_Region'><img  src=" + d.imag + " style=width:100px;height:120px; ></ahref><p id="+"demo"+"></p> ");
-                        if (d.Description!=""){
-                            document.getElementById("demo").innerHTML="Attributes"+d.Description;
-                            //console.log(typeof d.Description);
-                        }
-                    })
-
-                    // fade out tooltip on mouse out
-                    .on("mouseout", function(d) {
-                        div.transition()
-                            .duration(500)
-                            .style("opacity", 0);
-                    });
-                    svg.selectAll("circles")
-                    .data(data)
-
-                    .enter()
-                    .append("image")
-                    .attr("class","circle_")
-                  .filter(function(d){ return d.TRUE ==0; })
-                  .attr("id", function(d) {
-                        return d.Species.replace(/ /g, "_").toLowerCase();})
-                  .attr('xlink:href', 'cactus.svg')
-                    .attr("x", function(d) {
-                        // try {
-                            return projection([d.lon, d.lat])[0]-20;
-                        // } catch(e) {
-                        //     return 0;
-                        // }
-                    })
-                    .attr("y", function(d) {
-                        // try {
-                            return projection([d.lon, d.lat])[1]-20;
-                        // } catch(e) {
-                        //     return 0;
-                        // }
-                    })
-
-                    .attr('width', 40)
-                    .attr('height', 40)
-
-
-                     .on("click",function(d){
-                    	if (d.Predict==0){
-                    		alert("This is Classified as Cactus with Flower");
-                    	}
-                    	else{
-                    		alert("This is Classified as Cactus without Flowers");
-                    	}
-
-                    })
-                    .on("mouseover", function(d) {
-                        div.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        div.text("Location: " + d.place)
-
-                            .style("left", (d3.event.pageX) + "px")
-                            .style("top", (d3.event.pageY - 28) + "px");
-                        div.html("<p>Species: " + d.Species + "</p><p>Location: " + d.place + "</p></h1><ahref='http://en.wikipedia.org/wiki/Tombouctou_Region'><img  src=" + d.imag + " style=width:100px;height:120px; ></ahref><p id="+"demo"+"></p> ");
-                        if (d.Description!=""){
-                            document.getElementById("demo").innerHTML="Attributes"+d.Description;
-                            //console.log(typeof d.Description);
-                        }
-                    })
-                    .on("mouseout", function(d) {
-                        div.transition()
-                            .duration(500)
-                            .style("opacity", 0);
-                    })
-
-             return datt;});
-
-            // Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
-
-        });
-
-    return datt;});
-    var datt=d3.csv("dataset.csv", function(data) {
-
-                var datt={};
-
-                for (i = 0; i < data.length; i++) {
-                    //console.log(data[i]);
-                    datt[data[i].Species.replace(/ /g, "_").toLowerCase()]=data[i].Description;
-                    }
-                    });
-
-
-
-
-
-
-    console.log(datt);
-    /*
-    Update the size and color of the marker circle on map.
-    */
-    function markLocationOnMap(species_name,datt) {
-        var elementId = "#".concat(species_name.replace(/ /g, "_").toLowerCase());
-        //console.log(elementId)
-        var circle = svg.selectAll(elementId);
-        //console.log(circle)
-        //var currentwidth = circle.attr("width");
-        //console.log(currentwidth)
-        //var currentheight = circle.attr("height");
-        //var newwidht = currentwidth * 2;
-       // var newheight=currentheight*2;
-        console.log('here')
-       //Sconsole.log(d)
-        var l= (circle[0].length)
-
-        if (l==0){
-            console.log('noti')
-
-            d3.select("p").text("Please check the Spelling")
-            .transition()
-            .duration(3000)
-            .transition()
-            .duration(3000)
-            .text("")
-            return
         }
 
+        // Bind the data to the SVG and create one path per GeoJSON feature
+        svg.selectAll("path")
+            .data(json.features)
+            .enter()
+            .append("path")
+            .attr("d", path)
+            .style("stroke", "#fff")
+            .style("stroke-width", "1")
+            .style("fill", function(d) {
+
+                // Get data value
+                var value = d.properties.visited;
+
+                if (value) {
+                    //If value exists…
+                    return color(value);
+                } else {
+                    //If value is undefined…
+                    return "rgb(213,222,217)";
+                }
+            });
+
+        // Map the cities I have lived in!
+        datt=d3.csv("dataset.csv", function(data) {
 
 
-        circle
-            .transition()
-            .duration(1500)
-            .attr('width', 80)
-            .attr('height', 80)
-            .transition()
-            .duration(1500)
-            .attr('width', 40)
-            .attr('height', 40) ;
+            for (i = 0; i < data.length; i++) {
+                //console.log(data[i]);
+                datt[data[i].Species.replace(/ /g, "_").toLowerCase()]=data[i].Description;
+                }
+            svg.selectAll("circles")
+                .data(data)
 
-        var elementId =" "
+                .enter()
+                .append("image")
+                .filter(function(d){ return d.TRUE ==1; })
+                .attr("id", function(d) {
+                    return d.Species.replace(/ /g, "_").toLowerCase();})
+                .attr('xlink:href', 'cactusflower.png')
+                .attr("x", function(d) {
+                    // try {
+                        return projection([d.lon, d.lat])[0]-20;
+                    // } catch(e) {
+                    //     return 0;
+                    // }
+                })
+                .attr("y", function(d) {
+                    // try {
+                        return projection([d.lon, d.lat])[1]-20;
+                    // } catch(e) {
+                    //     return 0;
+                    // }
+                })
+
+                .attr('width', 40)
+                .attr('height', 40)
+
+
+                // Modification of custom tooltip code provided by Malcolm Maclean, "D3 Tips and Tricks"
+                // http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
+                .on("click",function(d){
+                    if (d.Predict==0){
+                        alert("This is Flower");
+                    }
+                    else{
+                        alert("This is cactus");
+                    }
+
+                })
+
+                .on("mouseover", function(d) {
+
+
+                    div.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    div.text("Location: " + d.place)
+
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY - 28) + "px");
+                    div.html("<p>Species: " + d.Species + "</p><p>Location: " + d.place + "</p></h1><ahref='http://en.wikipedia.org/wiki/Tombouctou_Region'><img  src=" + d.imag + " style=width:100px;height:120px; ></ahref><p id="+"demo"+"></p> ");
+                    if (d.Description!=""){
+                        document.getElementById("demo").innerHTML="Attributes"+d.Description;
+                        //console.log(typeof d.Description);
+                    }
+                })
+
+                // fade out tooltip on mouse out
+                .on("mouseout", function(d) {
+                    div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                });
+                svg.selectAll("circles")
+                .data(data)
+
+                .enter()
+                .append("image")
+                .attr("class","circle_")
+              .filter(function(d){ return d.TRUE ==0; })
+              .attr("id", function(d) {
+                    return d.Species.replace(/ /g, "_").toLowerCase();})
+              .attr('xlink:href', 'cactus.svg')
+                .attr("x", function(d) {
+                    // try {
+                        return projection([d.lon, d.lat])[0]-20;
+                    // } catch(e) {
+                    //     return 0;
+                    // }
+                })
+                .attr("y", function(d) {
+                    // try {
+                        return projection([d.lon, d.lat])[1]-20;
+                    // } catch(e) {
+                    //     return 0;
+                    // }
+                })
+
+                .attr('width', 40)
+                .attr('height', 40)
+
+
+                 .on("click",function(d){
+                    if (d.Predict==0){
+                        alert("This is Classified as Cactus with Flower");
+                    }
+                    else{
+                        alert("This is Classified as Cactus without Flowers");
+                    }
+
+                })
+                .on("mouseover", function(d) {
+                    div.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    div.text("Location: " + d.place)
+
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY - 28) + "px");
+                    div.html("<p>Species: " + d.Species + "</p><p>Location: " + d.place + "</p></h1><ahref='http://en.wikipedia.org/wiki/Tombouctou_Region'><img  src=" + d.imag + " style=width:100px;height:120px; ></ahref><p id="+"demo"+"></p> ");
+                    if (d.Description!=""){
+                        document.getElementById("demo").innerHTML="Attributes"+d.Description;
+                        //console.log(typeof d.Description);
+                    }
+                })
+                .on("mouseout", function(d) {
+                    div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                })
+
+         return datt;});
+
+        // Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
+
+    });
+
+return datt;});
+var datt=d3.csv("dataset.csv", function(data) {
+
+            var datt={};
+
+            for (i = 0; i < data.length; i++) {
+                //console.log(data[i]);
+                datt[data[i].Species.replace(/ /g, "_").toLowerCase()]=data[i].Description;
+                }
+                });
 
 
 
 
+
+
+console.log(datt);
+/*
+Update the size and color of the marker circle on map.
+*/
+function markLocationOnMap(species_name,datt) {
+    var elementId = "#".concat(species_name.replace(/ /g, "_").toLowerCase());
+    //console.log(elementId)
+    var circle = svg.selectAll(elementId);
+    //console.log(circle)
+    //var currentwidth = circle.attr("width");
+    //console.log(currentwidth)
+    //var currentheight = circle.attr("height");
+    //var newwidht = currentwidth * 2;
+   // var newheight=currentheight*2;
+    console.log('here')
+   //Sconsole.log(d)
+    var l= (circle[0].length)
+
+    if (l==0){
+        console.log('noti')
+
+        d3.select("p").text("Please check the Spelling")
+        .transition()
+        .duration(3000)
+        .transition()
+        .duration(3000)
+        .text("")
+        return
     }
-    function marklocationrext(species_name){
-    }
+
+
+
+    circle
+        .transition()
+        .duration(1500)
+        .attr('width', 80)
+        .attr('height', 80)
+        .transition()
+        .duration(1500)
+        .attr('width', 40)
+        .attr('height', 40) ;
+
+    var elementId =" "
 
 
 
 
-    </script>
-</body>
+}
+function marklocationrext(species_name){
+}
+
+
+
+
+</script>
+
+  </body>
 </html>
