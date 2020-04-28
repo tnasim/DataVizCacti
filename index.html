@@ -383,15 +383,15 @@ http://bl.ocks.org/mbostock/3888852  */
 
 
 //Width and height of map
-var width = 1420;
-var height = 800;
+var width = 2840/1.5;
+var height = 2000/1.5;
 
 // D3 Projection
 var projection = d3.geo.albers().parallels([20, 50])
 // var projection = d3.geo.equirectangular()
     // .translate([width / 2, height / 2]) // translate to center of screen
     .translate([width / 6, height / 6]) // translate to center of screen
-    .scale([500]); // scale things down so see entire US
+    .scale([800/1.5]); // scale things down so see entire US
 
 // Define path generator
 var path = d3.geo.path() // path generator that will convert GeoJSON to SVG paths
@@ -466,7 +466,7 @@ datt=d3.csv("test.csv", function(data) {
                     return color(value);
                 } else {
                     //If value is undefined…
-                    return "rgb(213,222,217)";
+                    return"rgb(69,173,168)";
                 }
             });
 
@@ -486,7 +486,7 @@ datt=d3.csv("test.csv", function(data) {
                 .filter(function(d){ return d.TRUE ==1; })
                 .attr("id", function(d) {
                     return d.Species.replace(/ /g, "_").toLowerCase();})
-                .attr('xlink:href', 'cactusflower.png')
+                .attr('xlink:href', 'redmarker.png')
                 .attr("x", function(d) {
                     // try {
                         return projection([d.lon, d.lat])[0]-20;
@@ -502,8 +502,8 @@ datt=d3.csv("test.csv", function(data) {
                     // }
                 })
 
-                .attr('width', 40)
-                .attr('height', 40)
+                .attr('width', 20)
+                .attr('height', 20)
 
 
                 // Modification of custom tooltip code provided by Malcolm Maclean, "D3 Tips and Tricks"
@@ -550,7 +550,7 @@ datt=d3.csv("test.csv", function(data) {
               .filter(function(d){ return d.TRUE ==0; })
               .attr("id", function(d) {
                     return d.Species.replace(/ /g, "_").toLowerCase();})
-              .attr('xlink:href', 'cactus.svg')
+              .attr('xlink:href', 'greenmarker.png')
                 .attr("x", function(d) {
                     // try {
                         return projection([d.lon, d.lat])[0]-20;
@@ -566,8 +566,8 @@ datt=d3.csv("test.csv", function(data) {
                     // }
                 })
 
-                .attr('width', 40)
-                .attr('height', 40)
+                .attr('width', 20)
+                .attr('height', 20)
 
 
                  .on("click",function(d){
@@ -660,8 +660,8 @@ function markLocationOnMap(species_name,datt) {
         .attr('height', 80)
         .transition()
         .duration(1500)
-        .attr('width', 40)
-        .attr('height', 40) ;
+        .attr('width', 20)
+        .attr('height', 20) ;
 
     var elementId =" "
 
