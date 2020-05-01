@@ -514,7 +514,7 @@ datt=d3.csv("test.csv", function(data) {
                 .attr("id", function(d) {
                     return d.Species.replace(/ /g, "_").toLowerCase();})
                 // .attr('xlink:href', 'redmarker.png')
-                .attr('xlink:href', 'cactus_flower.png')
+                .attr('xlink:href', 'redmarker.png')
                 .attr("x", function(d) {
                     // try {
                         return projection([d.lon, d.lat])[0]-20;
@@ -579,7 +579,7 @@ datt=d3.csv("test.csv", function(data) {
               .attr("id", function(d) {
                     return d.Species.replace(/ /g, "_").toLowerCase();})
             //   .attr('xlink:href', 'greenmarker.png')
-              .attr('xlink:href', 'cactus_no_flower.png')
+              .attr('xlink:href', 'greenmarker.png')
                 .attr("x", function(d) {
                     // try {
                         return projection([d.lon, d.lat])[0]-20;
